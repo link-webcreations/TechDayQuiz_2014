@@ -1,0 +1,19 @@
+{
+  "name": "faurecia-quiz-frontend",
+  "version": "0.0.0",
+  "authors": [
+    "Vincent BESANCON",
+    "Yves ANDOLFATTO"
+  ],
+  "description": "Faurecia GIS TechDay Quiz",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "bower_components"
+  ],
+  "dependencies": {
+    "angular-route": "~1.2.25",
+    "angular": "~1.2.25",
+    "bootstrap": "~3.2.0"
+  }
+}
