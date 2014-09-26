@@ -1,7 +1,16 @@
-'use strict';
+define([
+    'angular',
+    'angular-route'
+], function(angular) {
+    'use strict';
 
-window.quiz = angular.module('quiz', ['ngRoute'])
-    .config(function($routeProvider) {
+    var app = angular.module('quizApp', ['ngRoute']);
+
+    app.init = function () {
+      angular.bootstrap(document, ['quizApp']);
+    };
+
+    app.config(function($routeProvider) {
         var partialsDir = '../partials';
 
         // Routes configuration
@@ -20,3 +29,6 @@ window.quiz = angular.module('quiz', ['ngRoute'])
         window.routeProvider = $routeProvider;
         window.startHash = window.location.hash.substring(1);
     });
+
+    return app;
+});
