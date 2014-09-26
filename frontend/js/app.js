@@ -1,10 +1,11 @@
 define([
     'angular',
-    'angular-route'
-], function(angular) {
+    'angular-route',
+    'modules/intro/introModule'
+], function() {
     'use strict';
 
-    var app = angular.module('quizApp', ['ngRoute']);
+    var app = angular.module('quizApp', ['ngRoute', 'quizApp.intro']);
 
     app.init = function () {
       angular.bootstrap(document, ['quizApp']);

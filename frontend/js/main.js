@@ -27,10 +27,8 @@ requirejs.config({
 });
 
 // Start the application.
-// Load the app first then all controllers.
 require([
-    'app',
-    'controllers/Controllers'
+    'app'
 ], function (app) {
   app.init();
 });
