@@ -24,9 +24,18 @@ define([
             .when('/', {
                 redirectTo: '/intro'
             })
+            .when('/intro', {
+                templateUrl: partialsDir + '/intro.html',
+            })
+            .when('/quiz', {
+                templateUrl: partialsDir + '/quiz.html',
+            })
             .when('/submit', {
                 controller: 'SubmitCtrl',
                 templateUrl: config.partials_dir + '/submit.html',
+            })
+            .when('/about', {
+                templateUrl: partialsDir + '/about.html',
             })
             .otherwise({
                 redirectTo: '/'

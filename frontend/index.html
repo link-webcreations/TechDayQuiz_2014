@@ -17,17 +17,17 @@
                 <ul class="nav nav-sidebar">
                     <li data-ng-class="{ active: isActive('/intro') }"><a href="#/intro">Welcome</a></li>
                     <li data-ng-class="{ active: isActive('/quiz') }"><a href="#/quiz">Quiz</a></li>
-                    <li data-ng-class="{ active: isActive('/review') }"><a href="#/review">Review</a></li>
-                    <li data-ng-class="{ active: isActive('/about') }"><a href="#/about">About</a></li>
                     <li data-ng-class="{ active: isActive('/submit') }"><a href="#/submit">Submit</a></li>
+                    <li data-ng-class="{ active: isActive('/about') }"><a href="#/about">About</a></li>
                 </ul>
             </div>
-            <div data-ng-view>
+            <div class="main" data-ng-view>
             </div>
         </div>
     </div><!-- /.container -->
 
     <div class="footer">
+        <hr>
         <div class="container">
             <p>Copyright &copy; Faurecia 2014, all rights reserved.</p>
         </div>
