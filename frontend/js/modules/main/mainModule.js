@@ -1,9 +1,10 @@
 define([
+    'angular',
     'modules/main/controllers',
     'modules/main/factories'
-], function() {
+], function(angular) {
     'use strict';
 
-    angular.module('quizApp.main', ['quizApp.main.controllers',
-                                    'quizApp.main.api']);
+    return angular.module('quizApp.main', ['quizApp.main.controllers',
+                                           'quizApp.main.api']);
 });

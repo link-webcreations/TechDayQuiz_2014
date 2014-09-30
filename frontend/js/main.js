@@ -41,8 +41,7 @@ requirejs.config({
 requirejs([
     'jquery',
     'bootstrap',
-    'angular',
     'app'
-], function ($, _bootstrap, _angular, app) {
+], function ($, _bootstrap, app) {
   app.init();
 });

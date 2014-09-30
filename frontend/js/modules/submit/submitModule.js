@@ -1,6 +1,7 @@
 define([
+    'angular',
     'modules/submit/controllers'
-], function() {
+], function(angular) {
     'use strict';
 
     angular.module('quizApp.submit', ['quizApp.submit.controllers']);
