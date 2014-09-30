@@ -1,11 +1,12 @@
 define([
     'angular',
+    'config',
     'angular-route',
     'angular-cookies',
     'angular-resource',
     'modules/main/mainModule',
     'modules/submit/submitModule'
-], function(angular) {
+], function(angular, config) {
     'use strict';
 
     var app = angular.module('quizApp', ['ngRoute',
@@ -18,8 +19,6 @@ define([
     };
 
     app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
-        var partialsDir = '../partials';
-
         // Routes configuration
         $routeProvider
             .when('/', {
@@ -27,7 +26,7 @@ define([
             })
             .when('/submit', {
                 controller: 'SubmitCtrl',
-                templateUrl: partialsDir + '/submit.html',
+                templateUrl: config.partials_dir + '/submit.html',
             })
             .otherwise({
                 redirectTo: '/'
