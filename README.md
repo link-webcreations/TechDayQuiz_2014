@@ -18,7 +18,7 @@ The project needs some tools used for the development and for the deployment. En
 
 This will guide you to the setup of all needed dependencies used during the development.
 
-### Backend
+### Backend requirements
 
 To install the development dependencies for the backend:
 
@@ -29,7 +29,7 @@ $ mkvirtualenv techday_quiz_2014 -r requirements-dev.txt
 
 We assume that the python development virtual environment is **techday_quiz_2014**.
 
-### Frontend
+### Frontend requirements
 
 To install the development dependencies for the frontend:
 
@@ -38,3 +38,41 @@ $ cd frontend/
 $ npm install
 $ bower install
 ```
+
+### Start the backend
+
+Change to the backend's techday django project directory:
+
+```
+$ cd backend/techday/
+```
+
+Create the database and run the migrations. You will be asked to create a
+superuser:
+
+```
+$ ./manage.py syncdb
+```
+
+Start the backend that provides the RESTful API. Start a web server listening
+on port 8000:
+
+```
+$ ./manage.py runserver
+```
+
+### Start the frontend
+
+Change to the frontend directory:
+
+```
+$ cd frontend/
+```
+
+Start the HTTP server:
+
+```
+$ ./node_modules/.bin/http-server
+```
+
+Open your browser to http://localhost:8000/.
