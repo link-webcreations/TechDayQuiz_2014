@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="en" data-ng-controller="MainCtrl">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Quiz</title>
+    <title>Faurecia TechDay 2014 - {{ section }}</title>
     <meta name="description" content="Faurecia GIS TechDay Quiz">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -11,13 +11,26 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <div class="container">
-        <div data-ng-view>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li data-ng-class="{ active: isActive('/intro') }"><a href="#/intro">Welcome</a></li>
+                    <li data-ng-class="{ active: isActive('/quiz') }"><a href="#/quiz">Quiz</a></li>
+                    <li data-ng-class="{ active: isActive('/review') }"><a href="#/review">Review</a></li>
+                    <li data-ng-class="{ active: isActive('/about') }"><a href="#/about">About</a></li>
+                    <li data-ng-class="{ active: isActive('/submit') }"><a href="#/submit">Submit</a></li>
+                </ul>
+            </div>
+            <div data-ng-view>
+            </div>
         </div>
     </div><!-- /.container -->
 
     <div class="footer">
-        <p>Copyright &copy; Faurecia 2014, all rights reserved.</p>
+        <div class="container">
+            <p>Copyright &copy; Faurecia 2014, all rights reserved.</p>
+        </div>
     </div>
 
     <script data-main="js/main" src="bower_components/requirejs/require.js"></script>
