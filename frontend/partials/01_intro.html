@@ -1,3 +1,21 @@
-<div data-ng-controller="IntroCtrl">
-{{ intro_message }}
+<div class="col-md-3 col-md-offset-1" data-ng-controller="IntroCtrl">
+    <form name="introForm" class="form-start" role="form" data-ng-submit="submit()" novalidate>
+        <legend>{{ intro_message }}</legend>
+
+        <div id="messages" class="alert alert-success" data-ng-show="messages" data-ng-bind="messages"></div>
+        <div data-ng-show="progress.active()">Sending&hellip;</div>
+
+        <div class="form-group">
+            <label class="sr-only" for="email">Full name</label>
+            <input type="text" class="form-control" name="name" placeholder="Full name" data-ng-model="name" data-ng-required autofocus>
+            <span class="label label-danger" data-ng-show="submitted && introForm.name.$error.required">Required!</span>
+
+            <label class="sr-only" for="email">Email address</label>
+            <input type="email" class="form-control" name="email" placeholder="Email address" data-ng-model="email" data-ng-required>
+            <span class="label label-danger" data-ng-show="submitted && introForm.email.$error.required">Required!</span>
+            <span class="label label-danger" data-ng-show="submitted && introForm.$error.email">Invalid email!</span>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" data-ng-disabled="progress.active()" data-ng-click="submit(introForm)">Start Quiz !</button>
+    </form>
 </div>
