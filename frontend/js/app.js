@@ -1,38 +1,32 @@
 define([
-    'angular',
     'angular-route',
+    'angular-cookies',
+    'angular-resource',
     'modules/main/mainModule',
-    'modules/intro/introModule'
+    'modules/submit/submitModule'
 ], function() {
     'use strict';
 
-    var app = angular.module('quizApp', ['ngRoute', 'quizApp.intro']);
+    var app = angular.module('quizApp', ['ngRoute',
+                                         'ngCookies',
+                                         'quizApp.main',
+                                         'quizApp.submit']);
 
     app.init = function () {
       angular.bootstrap(document, ['quizApp']);
     };
 
-    app.config(function($routeProvider) {
+    app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
         var partialsDir = '../partials';
 
         // Routes configuration
         $routeProvider
             .when('/', {
-                controller: 'MainCtrl',
                 redirectTo: '/intro'
             })
-            .when('/intro', {
-                controller: 'IntroCtrl',
-                templateUrl: partialsDir + '/01_intro.html',
-            })
-            .when('/quiz', {
-                redirectTo: partialsDir + '/02_quiz.html'
-            })
-            .when('/review', {
-                redirectTo: partialsDir + '/03_review.html'
-            })
-            .when('/about', {
-                redirectTo: partialsDir + '/04_about.html'
+            .when('/submit', {
+                controller: 'SubmitCtrl',
+                templateUrl: partialsDir + '/submit.html',
             })
             .otherwise({
                 redirectTo: '/'
@@ -40,7 +34,11 @@ define([
 
         window.routeProvider = $routeProvider;
         window.startHash = window.location.hash.substring(1);
-    });
+
+        // CSRF
+        $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+        $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+    }]);
 
     return app;
 });

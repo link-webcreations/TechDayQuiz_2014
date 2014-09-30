@@ -1,21 +1,25 @@
-<div class="col-md-3 col-md-offset-1" data-ng-controller="IntroCtrl">
-    <form name="introForm" class="form-start" role="form" data-ng-submit="submit()" novalidate>
-        <legend>{{ intro_message }}</legend>
+<div class="col-md-3 col-md-offset-1">
+    <form name="submitForm" class="form-start" role="form" novalidate>
+        <legend>Almost done...</legend>
 
-        <div id="messages" class="alert alert-success" data-ng-show="messages" data-ng-bind="messages"></div>
-        <div data-ng-show="progress.active()">Sending&hellip;</div>
-
-        <div class="form-group">
-            <label class="sr-only" for="email">Full name</label>
-            <input type="text" class="form-control" name="name" placeholder="Full name" data-ng-model="name" data-ng-required autofocus>
-            <span class="label label-danger" data-ng-show="submitted && introForm.name.$error.required">Required!</span>
-
-            <label class="sr-only" for="email">Email address</label>
-            <input type="email" class="form-control" name="email" placeholder="Email address" data-ng-model="email" data-ng-required>
-            <span class="label label-danger" data-ng-show="submitted && introForm.email.$error.required">Required!</span>
-            <span class="label label-danger" data-ng-show="submitted && introForm.$error.email">Invalid email!</span>
+        <div id="messages" class="alert alert-success" data-ng-show="submit_success" >
+          <p>You have successfully registered !</p>
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block" data-ng-disabled="progress.active()" data-ng-click="submit(introForm)">Start Quiz !</button>
+        <div class="form-group">
+            <label class="sr-only" for="firstname">Firstname</label>
+            <input type="text" class="form-control" name="firstname" placeholder="Firstname" data-ng-model="person.firstname" required autofocus>
+            <span class="label label-danger" data-ng-show="submit_errors.firstname" data-ng-bind="submit_errors.firstname"></span>
+
+            <label class="sr-only" for="lastname">Lastname</label>
+            <input type="text" class="form-control" name="lastname" placeholder="Lastname" data-ng-model="person.lastname" required>
+            <span class="label label-danger" data-ng-show="submit_errors.lastname" data-ng-bind="submit_errors.lastname"></span>
+
+            <label class="sr-only" for="email">Email address</label>
+            <input type="email" class="form-control" name="email" placeholder="Email address" data-ng-model="person.email" required>
+            <span class="label label-danger" data-ng-show="submit_errors.email" data-ng-bind="submit_errors.email"></span>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" data-ng-disabled="submitForm.$invalid" data-ng-click="submit_results()">Submit results !</button>
     </form>
 </div>

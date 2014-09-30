@@ -54,6 +54,13 @@ body {
   border-top-right-radius: 0;
 }
 
+/* Sidebar styles
+-------------------------------------------------- */
+
+.nav-sidebar > li.active {
+  background-color: black;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {

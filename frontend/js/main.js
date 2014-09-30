@@ -10,6 +10,8 @@ requirejs.config({
     paths: {
         'angular': '../bower_components/angular/angular.min',
         'angular-route': '../bower_components/angular-route/angular-route.min',
+        'angular-cookies': '../bower_components/angular-cookies/angular-cookies.min',
+        'angular-resource': '../bower_components/angular-resource/angular-resource.min',
         'jquery': '../bower_components/jquery/dist/jquery.min',
         'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap.min'
     },
@@ -25,6 +27,12 @@ requirejs.config({
         },
         'angular-route':{
             deps: ['angular']
+        },
+        'angular-cookies':{
+            deps: ['angular']
+        },
+        'angular-resource':{
+            deps: ['angular']
         }
     }
 });
@@ -33,7 +41,8 @@ requirejs.config({
 requirejs([
     'jquery',
     'bootstrap',
+    'angular',
     'app'
-], function ($, _bootstrap, app) {
+], function ($, _bootstrap, _angular, app) {
   app.init();
 });

@@ -1,7 +1,7 @@
 define([
-    'modules/intro/controllers'
+    'modules/submit/controllers'
 ], function() {
     'use strict';
 
-    angular.module('quizApp.intro', ['quizApp.intro.controllers']);
+    angular.module('quizApp.submit', ['quizApp.submit.controllers']);
 });
