@@ -15,3 +15,6 @@ class PersonAdmin(admin.ModelAdmin):
     )
 
 admin.site.register(models.Person, PersonAdmin)
+admin.site.register(models.Quiz)
+admin.site.register(models.Question)
+admin.site.register(models.Answer)
