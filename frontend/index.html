@@ -13,7 +13,7 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-3 col-md-2 sidebar">
+            <div class="col-md-3">
                 <ul class="nav nav-sidebar">
                     <li data-ng-class="{ active: isActive('/intro') }"><a href="#/intro">Welcome</a></li>
                     <li data-ng-class="{ active: isActive('/quiz') }"><a href="#/quiz">Quiz</a></li>
@@ -21,9 +21,10 @@
                     <li data-ng-class="{ active: isActive('/about') }"><a href="#/about">About</a></li>
                 </ul>
             </div>
-            <div class="main" data-ng-view>
+            <div class="col-md-9">
+                <div class="main" data-ng-view></div><!-- /.ng-view -->
             </div>
-        </div>
+        </div><!-- /.row -->
     </div><!-- /.container -->
 
     <div class="footer">

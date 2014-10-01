@@ -19,15 +19,18 @@
 
 body {
   font-family: 'PT Sans Narrow', sans-serif;
+  /*
   background: transparent;
+  */
 }
-
 html {
+  /*
   background: url(../img/landing.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
      -moz-background-size: cover;
        -o-background-size: cover;
           background-size: cover;
+  */
 }
 
 
@@ -38,11 +41,16 @@ html {
 
 /* Sidebar navigation */
 .nav-sidebar {
+  box-shadow:-2px 0 0 #EEE inset;
+  color: white;
   margin-bottom: 20px;
   margin-left: -20px;
   margin-right: -21px; /* 20px padding + 1px border */
   padding: 40px;
-  color: white;
+}
+.nav-sidebar > li {
+  list-style:none;
+  text-align:right;
 }
 .nav-sidebar > li > a {
   color: white;
@@ -53,6 +61,9 @@ html {
 .nav-sidebar > li > a:hover {
   background-color: rgba(0,0,0,0.1);
   font-weight: 700;
+}
+.nav-sidebar  > li a:after {
+    content: " ›";
 }
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
@@ -165,9 +176,8 @@ body {
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 60px;
+  height: 91px;
 }
-
 .footer > .container {
   margin: 20px 0;
 }
