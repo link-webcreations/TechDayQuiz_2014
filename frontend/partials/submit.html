@@ -8,15 +8,15 @@
 
         <div class="form-group">
             <label class="sr-only" for="firstname">Firstname</label>
-            <input type="text" class="form-control" name="firstname" placeholder="Firstname" data-ng-model="person.firstname" required autofocus>
+            <input type="text" class="form-control" name="firstname" placeholder="Firstname" data-ng-model="participant.firstname" required autofocus>
             <span class="label label-danger" data-ng-show="submit_errors.firstname" data-ng-bind="submit_errors.firstname"></span>
 
             <label class="sr-only" for="lastname">Lastname</label>
-            <input type="text" class="form-control" name="lastname" placeholder="Lastname" data-ng-model="person.lastname" required>
+            <input type="text" class="form-control" name="lastname" placeholder="Lastname" data-ng-model="participant.lastname" required>
             <span class="label label-danger" data-ng-show="submit_errors.lastname" data-ng-bind="submit_errors.lastname"></span>
 
             <label class="sr-only" for="email">Email address</label>
-            <input type="email" class="form-control" name="email" placeholder="Email address" data-ng-model="person.email" required>
+            <input type="email" class="form-control" name="email" placeholder="Email address" data-ng-model="participant.email" required>
             <span class="label label-danger" data-ng-show="submit_errors.email" data-ng-bind="submit_errors.email"></span>
         </div>
 
