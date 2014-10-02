@@ -24,6 +24,13 @@ define(['angular', 'config'], function(angular, config) {
         )
     }]);
 
+    module.factory('ParticipantAnswer', ['$resource', function($resource) {
+        return $resource(
+            config.api_entry_point+'/participant_answers/:participant_answerId',
+            {participant_answerId: '@id'}
+        )
+    }]);
+
     module.factory('Globals', function() {
         return {
             active_quiz: null,
