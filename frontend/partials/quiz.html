@@ -2,8 +2,8 @@
     <form name="quizForm" class="quizForm pull-left" role="form" novalidate>
         <legend>Quiz</legend>
 
-        <div class="form-group">
-            <label for="quizQuestion">What's the IP address</label>
+        <div class="form-group" data-ng-repeat="question in questions">
+            <label for="quizQuestion">{{ question.content }}</label>
             <span class="label label-danger" data-ng-show="quiz_errors.quizQuestion" data-ng-bind="quiz_errors.quizQuestion"></span>
             <input type="text" class="form-control" name="quizQuestion" placeholder="" data-ng-model="person.quizQuestion" required autofocus>
         </div>
