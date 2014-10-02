@@ -3,10 +3,12 @@ from django.contrib import admin
 
 from rest_framework import routers
 
-from quiz.api import PersonAPI
+from quiz.api import ParticipantAPI, QuizAPI, QuestionAPI
 
 router = routers.DefaultRouter(trailing_slash=False)
-router.register('persons', PersonAPI)
+router.register('participants', ParticipantAPI)
+router.register('quizzes', QuizAPI)
+router.register('questions', QuestionAPI)
 
 urlpatterns = patterns(
     '',
