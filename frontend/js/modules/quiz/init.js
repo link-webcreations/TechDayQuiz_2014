@@ -1,6 +1,6 @@
 define([
     'angular',
-    'modules/quiz/controllers'
+    './controllers'
 ], function(angular) {
     'use strict';
 

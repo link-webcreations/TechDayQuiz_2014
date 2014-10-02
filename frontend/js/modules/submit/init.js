@@ -1,6 +1,6 @@
 define([
     'angular',
-    'modules/submit/controllers'
+    './controllers'
 ], function(angular) {
     'use strict';
 

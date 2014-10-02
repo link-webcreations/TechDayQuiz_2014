@@ -4,17 +4,15 @@ define([
     'angular-route',
     'angular-cookies',
     'angular-resource',
-    'modules/main/mainModule',
-    'modules/intro/introModule',
-    'modules/quiz/quizModule',
-    'modules/submit/submitModule'
+    'modules/init'
 ], function(angular, config) {
     'use strict';
 
     var app = angular.module('quizApp', ['ngRoute',
                                          'ngCookies',
-                                         'quizApp.main',
+                                         'quizApp.api',
                                          'quizApp.intro',
+                                         'quizApp.main',
                                          'quizApp.quiz',
                                          'quizApp.submit']);
 
