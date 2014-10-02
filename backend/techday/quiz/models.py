@@ -72,6 +72,21 @@ class Answer(models.Model):
     question = models.ForeignKey('Question', related_name='answers')
     content = models.CharField(max_length=1024)
     is_correct = models.BooleanField(default=False)
+    match_given = models.BooleanField(default=False,
+                                      verbose_name='Match given answer ?')
 
     def __unicode__(self):
         return u"{0.content} ({0.is_correct})".format(self)
+
+
+class ParticipantAnswer(models.Model):
+    """A participant answer."""
+    class Meta:
+        unique_together = ('participant', 'answer',)
+
+    participant = models.ForeignKey('Participant',
+                                    related_name="given_answers")
+    answer = models.ForeignKey('Answer')
+    content = models.CharField(max_length=1024,
+                               blank=True,
+                               null=True)
