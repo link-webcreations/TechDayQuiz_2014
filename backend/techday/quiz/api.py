@@ -4,11 +4,19 @@
 
 from rest_framework import viewsets
 
-from .models import Participant, Quiz, Question
+from .models import (
+    Participant,
+    ParticipantAnswer,
+    Quiz,
+    Question,
+    Answer,
+)
 from .serializers import (
     ParticipantSerializer,
+    ParticipantAnswerSerializer,
     QuizSerializer,
     QuestionSerializer,
+    AnswerSerializer,
 )
 
 
@@ -26,3 +34,13 @@ class QuestionAPI(viewsets.ModelViewSet):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
     filter_fields = ('quiz',)
+
+
+class AnswerAPI(viewsets.ModelViewSet):
+    queryset = Answer.objects.all()
+    serializer_class = AnswerSerializer
+
+
+class ParticipantAnswerAPI(viewsets.ModelViewSet):
+    queryset = ParticipantAnswer.objects.all()
+    serializer_class = ParticipantAnswerSerializer

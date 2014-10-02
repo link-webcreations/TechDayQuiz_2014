@@ -30,7 +30,7 @@ class Participant(models.Model):
         self.firstname = self.firstname.title()
         self.lastname = self.lastname.upper()
         self.email = self.email.lower()
-        self.site = self.email.upper()
+        self.site = self.site.upper()
         super(Participant, self).save(*args, **kwargs)
 
     def __unicode__(self):
@@ -72,6 +72,21 @@ class Answer(models.Model):
     question = models.ForeignKey('Question', related_name='answers')
     content = models.CharField(max_length=1024)
     is_correct = models.BooleanField(default=False)
+    match_given = models.BooleanField(default=False,
+                                      verbose_name='Match given answer ?')
 
     def __unicode__(self):
         return u"{0.content} ({0.is_correct})".format(self)
+
+
+class ParticipantAnswer(models.Model):
+    """A participant answer."""
+    class Meta:
+        unique_together = ('participant', 'answer',)
+
+    participant = models.ForeignKey('Participant',
+                                    related_name="given_answers")
+    answer = models.ForeignKey('Answer')
+    content = models.CharField(max_length=1024,
+                               blank=True,
+                               null=True)

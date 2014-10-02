@@ -1,25 +1,28 @@
-<div class="col-md-3 col-md-offset-1">
-    <form name="submitForm" class="form-start" role="form" novalidate>
-        <legend>Almost done...</legend>
-
+<div class="col-md-4 col-md-offset-1 well well-sm">
+    <form name="submitForm" class="submitForm" role="form" novalidate>
+        <legend>Submit quiz results</legend>
         <div id="messages" class="alert alert-success" data-ng-show="submit_success" >
-          <p>You have successfully registered !</p>
+          <p>Your information has been submitted.</p>
         </div>
 
         <div class="form-group">
-            <label class="sr-only" for="firstname">Firstname</label>
-            <input type="text" class="form-control" name="firstname" placeholder="Firstname" data-ng-model="participant.firstname" required autofocus>
-            <span class="label label-danger" data-ng-show="submit_errors.firstname" data-ng-bind="submit_errors.firstname"></span>
-
-            <label class="sr-only" for="lastname">Lastname</label>
-            <input type="text" class="form-control" name="lastname" placeholder="Lastname" data-ng-model="participant.lastname" required>
-            <span class="label label-danger" data-ng-show="submit_errors.lastname" data-ng-bind="submit_errors.lastname"></span>
-
-            <label class="sr-only" for="email">Email address</label>
-            <input type="email" class="form-control" name="email" placeholder="Email address" data-ng-model="participant.email" required>
-            <span class="label label-danger" data-ng-show="submit_errors.email" data-ng-bind="submit_errors.email"></span>
+            <label class="control-label">Name</label>
+            <span class="label label-danger pull-right" data-ng-show="submit_errors.firstname" data-ng-bind="submit_errors.firstname"></span>
+            <span class="label label-danger pull-right" data-ng-show="submit_errors.lastname" data-ng-bind="submit_errors.lastname"></span>
+            <div class="input-group">
+                <input type="text" class="form-control input-sm" name="firstname" placeholder="First" data-ng-model="participant.firstname" required autofocus>
+                <span class="input-group-btn" style="width:0px;"></span>
+                <input type="text" class="form-control input-sm" name="lastname" placeholder="Last" data-ng-model="participant.lastname" required>
+                <span class="input-group-btn" style="width:0px;"></span>
+                <input type="text" class="form-control input-sm" name="site" placeholder="Site" data-ng-model="participant.site" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="email">Your email address</label>
+            <span class="label label-danger pull-right" data-ng-show="submit_errors.email" data-ng-bind="submit_errors.email"></span>
+            <input type="email" class="form-control" name="email" placeholder="@faurecia.com" data-ng-model="participant.email" required>
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block" data-ng-disabled="submitForm.$invalid" data-ng-click="submit_results()">Submit results !</button>
+        <button class="btn btn-lg btn-primary btn-block" data-ng-disabled="submitForm.$invalid" data-ng-click="submit_results()">Submit</button>
     </form>
 </div>

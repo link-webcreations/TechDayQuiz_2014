@@ -6,6 +6,7 @@ from django import forms
 
 
 class AnswerInlineFormset(forms.BaseInlineFormSet):
+    """Formset used by the inlines answers."""
     def clean(self):
         count = 0
         for form in self.forms:

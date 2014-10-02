@@ -1,0 +1,9 @@
+<div class="col-md-9">
+    <div class="pull-center">
+        <h1 class="page-heading">Welcome to the Quizzies' app.</h1>
+        <p>Please choose a Quiz</p>
+        <ul data-ng-repeat="quiz in quizzes">
+          <li data-ng-click="select_quiz(quiz.id)">{{ quiz.name }}</li>
+        </ul>
+    </div>
+</div>

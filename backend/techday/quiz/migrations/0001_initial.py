@@ -20,6 +20,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('content', models.CharField(max_length=1024)),
                 ('is_correct', models.BooleanField(default=False)),
+                ('match_given', models.BooleanField(default=False, verbose_name=b'Match given answer ?')),
             ],
             options={
             },
@@ -33,6 +34,18 @@ class Migration(migrations.Migration):
                 ('lastname', models.CharField(max_length=255, validators=[django.core.validators.RegexValidator(regex=b'^(?u)([^\\W\\d_]|\\s)+$', message=b'Only letters here.', code=b'invalid_lastname')])),
                 ('email', models.EmailField(unique=True, max_length=254, validators=[quiz.validators.validate_email_from_faurecia])),
                 ('site', models.CharField(max_length=255, validators=[django.core.validators.RegexValidator(regex=b'^(?u)([^\\W\\d_]|\\s)+$', message=b'Only letters here.', code=b'invalid_lastname')])),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='ParticipantAnswer',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('content', models.CharField(max_length=1024, null=True, blank=True)),
+                ('answer', models.ForeignKey(to='quiz.Answer')),
+                ('participant', models.ForeignKey(related_name=b'given_answers', to='quiz.Participant')),
             ],
             options={
             },
@@ -66,6 +79,10 @@ class Migration(migrations.Migration):
             name='quiz',
             field=models.ForeignKey(related_name=b'questions', to='quiz.Quiz'),
             preserve_default=True,
+        ),
+        migrations.AlterUniqueTogether(
+            name='participantanswer',
+            unique_together=set([('participant', 'answer')]),
         ),
         migrations.AddField(
             model_name='answer',
