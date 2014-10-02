@@ -1,7 +1,10 @@
-define(['angular'], function(angular) {
+define([
+    'angular'
+], function(angular) {
     'use strict';
 
-    angular.module('quizApp.intro.controllers', ['quizApp.main.api'])
+    angular.module('quizApp.intro.controllers',
+                   ['quizApp.main.services', 'quizApp.api.services'])
         .controller('IntroCtrl', ['$scope', '$location', 'Quiz', 'Globals',
             function($scope, $location, Quiz, Globals) {
                 $scope.quizzes = Quiz.query();
@@ -9,7 +12,7 @@ define(['angular'], function(angular) {
                 $scope.select_quiz = function(quiz_id) {
                     Globals.active_quiz = quiz_id;
                     $location.path("/quiz");
-                }
+                };
             }
         ]);
 });

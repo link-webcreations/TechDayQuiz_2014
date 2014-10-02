@@ -7,5 +7,5 @@ define([], function() {
 
         // The directory where to find all partials
         'partials_dir': '../partials'
-    }
-})
+    };
+});
