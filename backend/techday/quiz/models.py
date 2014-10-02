@@ -30,7 +30,7 @@ class Participant(models.Model):
         self.firstname = self.firstname.title()
         self.lastname = self.lastname.upper()
         self.email = self.email.lower()
-        self.site = self.email.upper()
+        self.site = self.site.upper()
         super(Participant, self).save(*args, **kwargs)
 
     def __unicode__(self):
