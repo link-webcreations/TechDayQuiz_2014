@@ -25,3 +25,4 @@ class QuizAPI(viewsets.ModelViewSet):
 class QuestionAPI(viewsets.ModelViewSet):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
+    filter_fields = ('quiz',)

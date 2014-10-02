@@ -15,7 +15,7 @@ class ParticipantSerializer(serializers.HyperlinkedModelSerializer):
 class AnswerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Answer
-        fields = ('content', 'is_correct')
+        fields = ('content',)
 
 
 class QuestionSerializer(serializers.HyperlinkedModelSerializer):
@@ -29,4 +29,4 @@ class QuestionSerializer(serializers.HyperlinkedModelSerializer):
 class QuizSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Quiz
-        fields = ('name', 'created')
+        fields = ('id', 'name', 'created')

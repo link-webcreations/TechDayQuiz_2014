@@ -22,12 +22,15 @@ class Participant(models.Model):
     email = models.EmailField(max_length=254,
                               validators=[validate_email_from_faurecia],
                               unique=True)
+    site = models.CharField(max_length=255,
+                            validators=[validate_letters_only])
 
     def save(self, *args, **kwargs):
         """Customize saving of model."""
         self.firstname = self.firstname.title()
         self.lastname = self.lastname.upper()
         self.email = self.email.lower()
+        self.site = self.email.upper()
         super(Participant, self).save(*args, **kwargs)
 
     def __unicode__(self):
