@@ -6,5 +6,4 @@
 # Install development deps
 ipython==2.2.0
 Markdown==2.5
-django-filter==0.7
 django-cors-headers==0.13
