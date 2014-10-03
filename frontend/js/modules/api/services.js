@@ -33,4 +33,10 @@ define([
             {participant_answerId: '@id'}
         );
     }]);
+
+    module.factory('Result', ['$resource', function($resource) {
+        return $resource(
+            config.api_entry_point+'/results'
+        );
+    }]);
 });

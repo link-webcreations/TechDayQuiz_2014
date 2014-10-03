@@ -3,10 +3,13 @@ define([
 ], function(angular) {
     'use strict';
 
-    angular.module('quizApp.submit.controllers',
-                   ['quizApp.main.services', 'quizApp.api.services']
-    ).controller('SubmitCtrl',
-                 ['$scope', 'Participant', function($scope, Participant) {
+    var module = angular.module('quizApp.submit.controllers',
+                                ['quizApp.main.services',
+                                 'quizApp.api.services']);
+
+    // Submit result controller
+    module.controller('SubmitCtrl',
+                      ['$scope', 'Participant', function($scope, Participant) {
         $scope.submit_results = function() {
             $scope.submit_errors = null;
             $scope.submit_success = false;
@@ -22,5 +25,11 @@ define([
                     });
             }
         };
+    }]);
+
+    // Results controller
+    module.controller('ResultCtrl',
+                      ['$scope', 'Result', function($scope, Result) {
+        $scope.results = Result.query({quiz: 1, participant: 9});
     }]);
 });

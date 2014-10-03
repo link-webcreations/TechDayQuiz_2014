@@ -38,8 +38,9 @@ define([
                 controller: 'SubmitCtrl',
                 templateUrl: config.partials_dir + '/submit.html',
             })
-            .when('/about', {
-                templateUrl: config.partials_dir + '/about.html',
+            .when('/done', {
+                controller: 'ResultCtrl',
+                templateUrl: config.partials_dir + '/done.html',
             })
             .otherwise({
                 redirectTo: '/'
