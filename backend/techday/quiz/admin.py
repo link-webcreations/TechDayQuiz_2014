@@ -6,8 +6,9 @@ import models
 from .forms import AnswerInlineFormset
 
 
-class QuestionAnswerInline(admin.TabularInline):
+class QuestionAnswerInline(admin.StackedInline):
     model = models.Answer
+    extra = 1
     formset = AnswerInlineFormset
 
 
