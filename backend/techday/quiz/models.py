@@ -33,6 +33,36 @@ class Participant(models.Model):
         self.site = self.site.upper()
         super(Participant, self).save(*args, **kwargs)
 
+    def show_results(self, quiz_id=None):
+        if not quiz_id:
+            raise TypeError('Provides quiz_id !')
+
+        results = {
+            'quiz': Quiz.objects.get(id=quiz_id).name,
+            'good': [],
+            'bad': [],
+            'num_good': 0,
+            'num_bad': 0,
+            'total': 0,
+        }
+
+        for given in self.given_answers.filter(answer__question__quiz=quiz_id):
+            if given.answer.is_correct:
+                results['good'].append(given.answer.question.content)
+            else:
+                results['bad'].append(given.answer.question.content)
+
+        # Count good/bad responses
+        results['num_good'] = len(results['good'])
+        results['num_bad'] = len(results['bad'])
+        results['total'] = Question.objects.filter(quiz__id=quiz_id).count()
+
+        return results
+
+    @property
+    def fullname(self):
+        return u"{0.firstname} {0.lastname}".format(self)
+
     def __unicode__(self):
         return u"{0.firstname} {0.lastname} <{0.email}>".format(self)
 
@@ -86,7 +116,15 @@ class ParticipantAnswer(models.Model):
 
     participant = models.ForeignKey('Participant',
                                     related_name="given_answers")
-    answer = models.ForeignKey('Answer')
+    answer = models.ForeignKey('Answer',
+                               related_name="given_answers")
     content = models.CharField(max_length=1024,
                                blank=True,
                                null=True)
+
+    def __unicode__(self):
+        participant = u"{0.firstname} {0.lastname}".format(self.participant)
+        if self.answer.match_given:
+            return u"{0}: {1.content}".format(participant, self)
+        else:
+            return u"{0}: {1.answer}".format(participant, self)

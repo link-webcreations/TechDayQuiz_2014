@@ -6,7 +6,7 @@ define([
 
     var module = angular.module('quizApp.main.services', ['ngResource']);
 
-    module.factory('Globals', function() {
+    module.service('Globals', function() {
         return {
             active_quiz: null,
         };

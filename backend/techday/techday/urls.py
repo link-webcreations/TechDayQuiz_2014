@@ -9,6 +9,7 @@ from quiz.api import (
     QuizAPI,
     QuestionAPI,
     AnswerAPI,
+    QuizResultsView,
 )
 
 router = routers.DefaultRouter(trailing_slash=False)
@@ -22,6 +23,7 @@ urlpatterns = patterns(
     '',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include(router.urls)),
+    url(r'^api/results/$', QuizResultsView.as_view()),
     url(r'^api-auth/', include('rest_framework.urls',
         namespace='rest_framework')),
 )
