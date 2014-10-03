@@ -13,17 +13,15 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-3">
-                <ul class="nav nav-sidebar">
-                    <li data-ng-class="{ active: isActive('/intro') }"><a href="#/intro">Welcome</a></li>
-                    <li data-ng-class="{ active: isActive('/quiz') }"><a href="#/quiz">Quiz</a></li>
-                    <li data-ng-class="{ active: isActive('/submit') }"><a href="#/submit">Submit</a></li>
-                    <li data-ng-class="{ active: isActive('/done') }"><a href="#/done">Done</a></li>
-                </ul>
-            </div>
-            <div class="col-md-9">
-                <div class="main" data-ng-view></div><!-- /.ng-view -->
-            </div>
+            <ol class="steps">
+                <li data-ng-class="{ active: isActive('/intro') }"><a href="#/intro">Welcome</a></li>
+                <li data-ng-class="{ active: isActive('/quiz') }"><a href="#/quiz">Quiz</a></li>
+                <li data-ng-class="{ active: isActive('/submit') }"><a href="#/submit">Submit</a></li>
+                <li data-ng-class="{ active: isActive('/done') }"><a href="#/done">Done</a></li>
+            </ol>
+        </div><!-- /.row -->
+        <div class="row">
+            <div class="main" data-ng-view></div><!-- /.ng-view -->
         </div><!-- /.row -->
     </div><!-- /.container -->
 
