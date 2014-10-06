@@ -9,8 +9,8 @@ define([
             function($scope, $location, Quiz, Globals) {
                 $scope.quizzes = Quiz.query();
 
-                $scope.select_quiz = function(quiz_id) {
-                    Globals.active_quiz = quiz_id;
+                $scope.select_quiz = function(quiz) {
+                    Globals.active_quiz = quiz;
                     $location.path("/quiz");
                 };
             }
