@@ -13,23 +13,22 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-3">
-                <ul class="nav nav-sidebar">
-                    <li data-ng-class="{ active: isActive('/intro') }"><a href="#/intro">Welcome</a></li>
-                    <li data-ng-class="{ active: isActive('/quiz') }"><a href="#/quiz">Quiz</a></li>
-                    <li data-ng-class="{ active: isActive('/submit') }"><a href="#/submit">Submit</a></li>
-                    <li data-ng-class="{ active: isActive('/done') }"><a href="#/done">Done</a></li>
-                </ul>
-            </div>
-            <div class="col-md-9">
-                <div class="main" data-ng-view></div><!-- /.ng-view -->
-            </div>
+            <ol class="steps">
+                <li data-ng-class="{ active: isActive('/intro') }">Welcome</li>
+                <li data-ng-class="{ active: isActive('/quiz') }">Quiz</li>
+                <li data-ng-class="{ active: isActive('/submit') }">Submit</li>
+                <li data-ng-class="{ active: isActive('/done') }">Done</li>
+            </ol>
+        </div><!-- /.row -->
+        <div class="row">
+            <div class="main" data-ng-view></div><!-- /.ng-view -->
         </div><!-- /.row -->
     </div><!-- /.container -->
 
     <div class="footer">
         <div class="container">
-            <p>Copyright &copy; Faurecia 2014, all rights reserved.</p>
+            <p class="pull-left">Copyright &copy; Faurecia 2014, all rights reserved.</p>
+            <img src="" alt="Faurecia logo" class="pull-right"></img>
         </div>
     </div>
 

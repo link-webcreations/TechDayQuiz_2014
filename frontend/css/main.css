@@ -19,10 +19,6 @@
 
 body {
   font-family: 'PT Sans Narrow', sans-serif;
-  background-color: #e5e9ec;
-  /*
-  background: transparent;
-  */
 }
 html {
   /*
@@ -37,57 +33,73 @@ html {
 
 
 /*
- * Sidebar
- */
-
-/* Sidebar navigation */
-.nav-sidebar {
-  box-shadow: -2px 0 0 rgba(0,0,0,0.4) inset;
-  margin-bottom: 20px;
-  margin-left: -20px;
-  margin-right: -21px; /* 20px padding + 1px border */
-  padding: 40px;
-}
-.nav-sidebar > li {
-  list-style:none;
-  text-align:right;
-}
-.nav-sidebar > li > a {
-  color: black;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-.nav-sidebar > li > a:hover {
-  background-color: rgba(0,0,0,0.2);
-  color: white;
-  font-weight: 700;
-}
-.nav-sidebar  > li a:after {
-    content: " ›";
-}
-.nav-sidebar > .active > a,
-.nav-sidebar > .active > a:hover,
-.nav-sidebar > .active > a:focus {
-  background-color: rgba(0,0,0,0.4);
-  color: white;
-  font-weight: 700;
-}
-.nav-sidebar > .active > a:hover {
-  background-color: rgba(0,0,0,0.6);
-  font-weight: 700;
-}
-
-
-
-/*
  * Main content
  */
-
-/* main style */
-.main {
-  padding-top: 40px;
-  padding-bottom: 40px;
+/* Color definitions */
+body {
+  background-color: transparent;
 }
+.well {
+  background-color: rgb(209,210,212);
+}
+
+/* Steps Bar */
+ol.steps {
+  margin: 50px auto;
+  padding: 0;
+  width: 100%; /* or your desired width */
+  text-align: center;
+  /*CSS counters to number the steps*/
+  counter-reset: step;
+  display: flex;
+}
+ol.steps > li {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  text-align: center;
+  color: black;
+  float: left;
+  position: relative;
+  text-transform: uppercase;
+  width: 100%;
+  margin: auto;
+}
+ol.steps > li:before {
+  content: counter(step);
+  counter-increment: step;
+  background-color: rgb(0,171,196);
+  color: white;
+  display: block;
+  line-height: 20px;
+  margin: 0 auto 5px auto;
+  width: 20px;
+}
+ol.steps > li.active {
+  font-weight: 700;
+}
+ol.steps > li.active:before {
+  background-color: rgb(238,127,0);
+  font-weight: 700;
+}
+ol.steps > li:first-child:after {
+  content: none; 
+}
+ol.steps > li:after {
+  content: '';
+  width: 100%;
+  height: 2px;
+  background-color: rgb(0,171,196);
+  position: absolute;
+  left: -50%;
+  top: 9px;
+  z-index: -1;
+}
+
+/*ol.steps > li.active:after{
+  background-color: rgb(238,127,0);
+}
+How to green all prvious elents ? a way is to add a class on all visited elements using angular ngclass*/
 
 /* submit form style */
 .submitForm {
@@ -120,42 +132,6 @@ html {
   text-align: right;
 }
 
-/* quiz form style */
-.quizForm {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-.quizForm .form-control {
-  position: relative;
-  height: auto;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 10px;
-  font-size: 16px;
-}
-.quizForm .form-control:focus {
-  z-index: 2;
-}
-.quizForm .first {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.quizForm .middle {
-  margin-bottom: -1px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.quizForm .last {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
 
 
 /*
@@ -173,8 +149,9 @@ body {
   margin-bottom: 60px;
 }
 .footer {
-  background-color: white;
-  border-top: 1px #eee inset;
+  background-color: rgb(238,127,0);
+  color: white;
+  /*border-top: 1px #eee inset;*/
   bottom: 0;
   position: absolute;
   width: 100%;
@@ -182,7 +159,7 @@ body {
   height: 91px;
 }
 .footer > .container {
-  margin: 20px 20px;
+  margin: 20px auto;
 }
 
 

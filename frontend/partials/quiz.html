@@ -1,6 +1,6 @@
-<div class="col-md-10 col-md-offset-1 well well-sm">
-    <form name="quizForm" class="quizForm pull-left" role="form" novalidate>
-        <legend>Quiz</legend>
+<div class="col-xs-8 col-xs-offset-2 well">
+    <form name="quizForm" class="quizForm" role="form" novalidate>
+        <legend for="quizzes">{{ quiz.name }}ICI QUIZ NAME</legend>
 
         <div class="form-group" data-ng-repeat="question in questions">
             <label for="quizQuestion">{{ question.content }}</label>
@@ -8,6 +8,7 @@
             <input type="text" class="form-control" name="quizQuestion" placeholder="" data-ng-model="person.quizQuestion" required autofocus>
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block" data-ng-disabled="quizForm.$invalid" data-ng-click="quiz_results()">Next step</button>
+        <a href="/" class="btn btn-lg btn-primary pull-left" role="button">&larr; Previous</a>
+        <button class="btn btn-lg btn-primary pull-right" data-ng-disabled="quizForm.$invalid" data-ng-click="quiz_results()">Next &rarr;</button>
     </form>
 </div>
