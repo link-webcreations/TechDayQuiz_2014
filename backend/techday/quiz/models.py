@@ -77,7 +77,9 @@ class Quiz(models.Model):
         verbose_name_plural = "Quizzes"
 
     name = models.CharField(max_length=255)
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User,
+                               blank=True,
+                               editable=False)
     created = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
