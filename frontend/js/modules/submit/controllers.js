@@ -19,7 +19,7 @@ define([
                 text: "You will not be able to change anything!",
                 type: "warning",
                 showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
+                confirmButtonColor: "#89C068",
                 confirmButtonText: "Yes, send my answers!"
             },function() {
                 if ($scope.submitForm.$valid) {
