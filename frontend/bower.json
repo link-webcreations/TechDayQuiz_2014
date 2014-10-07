@@ -12,11 +12,12 @@
     "bower_components"
   ],
   "dependencies": {
-    "angular-route": "~1.2.25",
     "angular": "~1.2.25",
+    "angular-cookies": "~1.2.25",
+    "angular-resource": "~1.2.25",
+    "angular-route": "~1.2.25",
     "bootstrap": "~3.2.0",
     "requirejs": "~2.1.15",
-    "angular-cookies": "~1.2.25",
-    "angular-resource": "~1.2.25"
+    "sweetalert": "~0.1.1"
   }
 }
