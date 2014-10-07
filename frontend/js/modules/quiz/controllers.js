@@ -13,6 +13,9 @@ define([
                     $scope.quiz = Globals.active_quiz;
                     $scope.questions = Question.query(
                                             {quiz: Globals.active_quiz.id});
+                    $scope.select_answer = function(answer) {
+                        $location.path("/submit");
+                    };
                 }
             }
         ]);

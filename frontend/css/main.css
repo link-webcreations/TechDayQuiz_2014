@@ -42,7 +42,6 @@ body {
 .well {
   background-color: rgb(209,210,212);
 }
-
 /* Steps Bar */
 ol.steps {
   margin: 50px auto;
@@ -76,11 +75,11 @@ ol.steps > li:before {
   width: 20px;
 }
 ol.steps > li.active {
-  font-weight: 700;
+  font-weight: bold;
 }
 ol.steps > li.active:before {
   background-color: rgb(238,127,0);
-  font-weight: 700;
+  font-weight: bold;
 }
 ol.steps > li:first-child:after {
   content: none; 
@@ -101,7 +100,10 @@ ol.steps > li:after {
 }
 How to green all prvious elents ? a way is to add a class on all visited elements using angular ngclass*/
 
-/* submit form style */
+/* Form style */
+legend {
+  text-transform: uppercase;
+}
 .submitForm {
   max-width: 330px;
   padding: 15px;

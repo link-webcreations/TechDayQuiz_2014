@@ -1,3 +1,8 @@
-<div>
-  <p data-ng-repeat="result in results">Thanks <strong>{{ result.participant }}</strong>, you have participated to quiz <strong>{{ result.results[0].quiz }}</strong> with {{ result.results[0].num_good }} / {{ result.results[0].total }} good answers</p>
+<div class="col-xs-8 col-xs-offset-2 pull-center">
+    <div data-ng-repeat="result in results">
+        <h1>Thank you for your participation <strong>{{ result.participant }}</strong></h1>
+        <p>You answered <strong>{{ result.results[0].num_good }} / {{ result.results[0].total }}</strong> questions correctly for <strong>{{ result.results[0].quiz }}</strong>.</p>
+        <br>
+    </div>
+    <a href="/" class="btn btn-link pull-right" role="button">Restart Quiz</a>
 </div>
