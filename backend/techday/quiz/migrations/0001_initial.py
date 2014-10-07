@@ -44,7 +44,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('content', models.CharField(max_length=1024, null=True, blank=True)),
-                ('answer', models.ForeignKey(to='quiz.Answer')),
+                ('answer', models.ForeignKey(related_name=b'given_answers', to='quiz.Answer')),
                 ('participant', models.ForeignKey(related_name=b'given_answers', to='quiz.Participant')),
             ],
             options={
@@ -67,7 +67,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=255)),
                 ('created', models.DateTimeField(auto_now_add=True)),
-                ('author', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('author', models.ForeignKey(blank=True, editable=False, to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'verbose_name_plural': 'Quizzes',
