@@ -92,6 +92,7 @@ class Question(models.Model):
     """
     quiz = models.ForeignKey('Quiz', related_name='questions')
     content = models.CharField(max_length=1024)
+    is_free_input = models.BooleanField(default=False)
 
     def __unicode__(self):
         return u"{0.content}".format(self)
@@ -102,10 +103,12 @@ class Answer(models.Model):
     A question answer.
     """
     question = models.ForeignKey('Question', related_name='answers')
-    content = models.CharField(max_length=1024)
+    content = models.CharField(max_length=1024, blank=True, null=True)
     is_correct = models.BooleanField(default=False)
-    match_given = models.BooleanField(default=False,
-                                      verbose_name='Match given answer ?')
+    match = models.CharField(max_length=1024,
+                             blank=True,
+                             null=True,
+                             help_text='Pattern that match the given answer.')
 
     def __unicode__(self):
         return u"{0.content} ({0.is_correct})".format(self)

@@ -11,8 +11,10 @@ define([
                     $location.path("/intro");
                 } else {
                     $scope.quiz = Globals.active_quiz;
-                    $scope.questions = Question.query(
-                                            {quiz: Globals.active_quiz.id});
+                    Question.query({quiz: Globals.active_quiz.id})
+                        .$promise.then(function(success) {
+                            $scope.questions = success;
+                        });
                     $scope.select_answer = function(answer) {
                         $location.path("/submit");
                     };

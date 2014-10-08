@@ -18,9 +18,9 @@ class Migration(migrations.Migration):
             name='Answer',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('content', models.CharField(max_length=1024)),
+                ('content', models.CharField(max_length=1024, null=True, blank=True)),
                 ('is_correct', models.BooleanField(default=False)),
-                ('match_given', models.BooleanField(default=False, verbose_name=b'Match given answer ?')),
+                ('match', models.CharField(help_text=b'Pattern that match the given answer.', max_length=1024, null=True, blank=True)),
             ],
             options={
             },
@@ -56,6 +56,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('content', models.CharField(max_length=1024)),
+                ('is_free_input', models.BooleanField(default=False)),
             ],
             options={
             },

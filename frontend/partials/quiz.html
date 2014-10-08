@@ -6,13 +6,10 @@
             <label>{{ question.content }}</label>
             <span class="label label-danger" data-ng-if="XXXX.quizQuestion" data-ng-bind="XXXX.quizQuestion"></span>
 
-            <input data-ng-repeat="answer in question.answers" data-ng-if="answer.match_given" type="text" class="form-control" name="quizQuestion" placeholder="Type your answer here" required>
-
-            <div data-ng-if="!answer.match_given">
-                <select class="form-control" name="quizQuestion" data-ng-model="questions" data-ng-options="answer.content for answer in question.answers" required>
-                    <option style="display:none" value="">select an answer</option>
-                </select>
-            </div>
+            <input type="text" data-ng-if="question.is_free_input" class="form-control" data-ng-model="given_answers[$index]" placeholder="Type your answer here" required>
+            <select class="form-control" data-ng-if="!question.is_free_input" name="{{ answer.id }}" data-ng-model="given_answers[$index]" data-ng-options="answer.content for answer in question.answers" required>
+                <option style="display:none" value="">select an answer</option>
+            </select>
         </div>
 
         <a href="/" class="btn btn-lg btn-primary pull-left" role="button">&larr; Previous</a>
