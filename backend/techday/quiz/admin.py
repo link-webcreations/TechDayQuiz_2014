@@ -3,7 +3,6 @@
 from django.contrib import admin
 
 import models
-from .forms import AnswerInlineFormset
 
 
 class TechdayAdminSite(admin.sites.AdminSite):
@@ -14,7 +13,6 @@ class TechdayAdminSite(admin.sites.AdminSite):
 class QuestionAnswerInline(admin.StackedInline):
     model = models.Answer
     extra = 1
-    formset = AnswerInlineFormset
 
 
 class QuizAdmin(admin.ModelAdmin):
