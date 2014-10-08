@@ -16,18 +16,8 @@
   src: local('PT Sans Narrow Bold'), local('PTSans-NarrowBold'), url(../fonts/PT_Sans-Narrow-Web-Bold.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
-
 body {
   font-family: 'PT Sans Narrow', sans-serif;
-}
-html {
-  /*
-  background: url(../img/landing.jpg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-     -moz-background-size: cover;
-       -o-background-size: cover;
-          background-size: cover;
-  */
 }
 
 
@@ -35,10 +25,22 @@ html {
 /*
  * Main content
  */
-/* Color definitions */
-body {
-  background-color: transparent;
+/* Background definitions */
+.background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 92px;
+  background: url(../img/landing.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+     -moz-background-size: cover;
+       -o-background-size: cover;
+          background-size: cover;
+  opacity:0.1;
+  z-index: -1000;
 }
+
+/* Color definitions */
 .well {
   background-color: rgb(209,210,212);
 }
@@ -77,9 +79,8 @@ fieldset[disabled] .btn-primary.active {
 ol.steps {
   margin: 50px auto;
   padding: 0;
-  width: 100%; /* or your desired width */
+  width: 100%;
   text-align: center;
-  /*CSS counters to number the steps*/
   counter-reset: step;
   display: flex;
 }
@@ -125,7 +126,6 @@ ol.steps > li:after {
   top: 9px;
   z-index: -1;
 }
-
 /*ol.steps > li.active:after{
   background-color: rgb(238,127,0);
 }
@@ -170,7 +170,6 @@ legend {
 /*
  * Footer
  */
-
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -178,17 +177,14 @@ html {
   min-height: 100%;
 }
 body {
-  /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
 .footer {
   background-color: rgb(238,127,0);
   color: white;
-  /*border-top: 1px #eee inset;*/
   bottom: 0;
   position: absolute;
   width: 100%;
-  /* Set the fixed height of the footer here */
   height: 91px;
 }
 .footer > .container {
@@ -200,7 +196,6 @@ body {
 /*
  * helpers
  */
-
 .pull-center {
   text-align: center;
 }
