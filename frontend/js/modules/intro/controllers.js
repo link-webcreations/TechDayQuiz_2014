@@ -7,7 +7,19 @@ define([
                    ['quizApp.main.services', 'quizApp.api.services'])
         .controller('IntroCtrl', ['$scope', '$location', 'Quiz', 'Globals',
             function($scope, $location, Quiz, Globals) {
-                $scope.quizzes = Quiz.query();
+                $scope.ERRORS = {
+                    "QUIZ_FETCH": "Unable to fetch quizzes !"
+                }
+
+                Quiz.query().$promise.then(
+                function(success) {
+                    $scope.quizzes = success;
+                    $scope.ready = true;
+                },
+                function(error) {
+                    $scope.ready = false;
+                    $scope.error = "QUIZ_FETCH";
+                });
 
                 $scope.select_quiz = function(quiz) {
                     Globals.active_quiz = quiz;
