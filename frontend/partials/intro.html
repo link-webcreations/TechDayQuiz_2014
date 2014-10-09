@@ -9,7 +9,10 @@
     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     <br>
     <div data-ng-switch="quizzes.length" class="col-xs-6 col-xs-offset-3">
-        <button class="btn btn-lg btn-primary btn-block" data-ng-disabled="!ready" data-ng-switch-when="1" data-ng-click="select_quiz(quizzes[0])">Start the Quiz</button>
+        <button class="btn btn-lg btn-primary btn-block"
+                data-ng-disabled="!ready"
+                data-ng-switch-when="1"
+                data-ng-click="select_quiz(quizzes[0])">Start the Quiz</button>
         <select data-ng-switch-when=">1"
                 class="form-control"
                 data-ng-disabled="!ready"
@@ -21,5 +24,6 @@
                     value="">select a quiz</option>
         </select>
     </div>
-    <p class="alert alert-danger" data-ng-if="error">{{ ERRORS[error] }}</p>
+    <p class="alert alert-danger"
+       data-ng-if="error">{{ ERRORS[error] }}</p>
 </div>
