@@ -14,13 +14,13 @@
 
             <input type="text"
                    class="form-control"
-                   data-ng-if="question.is_free_input"
-                   data-ng-model="quiz_answers[question.id]"
+                   data-ng-if="!question.answers.length"
+                   data-ng-model='quiz_answers[question.id]["content"]'
                    placeholder="Type your answer here"
                    required>
             <select class="form-control"
-                    data-ng-if="!question.is_free_input"
-                    data-ng-model="quiz_answers[question.id]"
+                    data-ng-if="question.answers.length"
+                    data-ng-model='quiz_answers[question.id]["answer"]'
                     data-ng-options="answer.id as answer.content for answer in question.answers"
                     required>
                 <option style="display:none"
