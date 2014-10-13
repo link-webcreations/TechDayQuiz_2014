@@ -13,16 +13,15 @@
                   data-ng-bind="XXXX.quizQuestion"></span>
 
             <input type="text"
-                   data-ng-if="question.is_free_input"
                    class="form-control"
-                   data-ng-model="given_answers[$index]"
+                   data-ng-if="question.is_free_input"
+                   data-ng-model="quiz_answers[question.id]"
                    placeholder="Type your answer here"
                    required>
             <select class="form-control"
                     data-ng-if="!question.is_free_input"
-                    name="{{ answer.id }}"
-                    data-ng-model="given_answers[$index]"
-                    data-ng-options="answer.content for answer in question.answers"
+                    data-ng-model="quiz_answers[question.id]"
+                    data-ng-options="answer.id as answer.content for answer in question.answers"
                     required>
                 <option style="display:none"
                         value="">select an answer</option>
@@ -36,4 +35,5 @@
                 data-ng-disabled="quizForm.$invalid"
                 data-ng-click="select_answer(answer)">Next &rarr;</button>
     </form>
+    <tt>{{ quiz_answers }}</tt>
 </div>

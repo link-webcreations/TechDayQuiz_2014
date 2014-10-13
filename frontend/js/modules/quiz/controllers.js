@@ -14,10 +14,14 @@ define([
                 $location.path("/intro");
             } else {
                 $scope.quiz = Globals.active_quiz;
+
+                // Fetch all questions for the active quiz
                 Question.query({quiz: Globals.active_quiz.id})
                     .$promise.then(function(success) {
                         $scope.questions = success;
+                        $scope.quiz_answers = {};
                     });
+
                 $scope.select_answer = function(answer) {
                     $location.path("/submit");
                 };
