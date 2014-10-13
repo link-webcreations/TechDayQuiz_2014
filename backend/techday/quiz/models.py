@@ -88,27 +88,43 @@ class Quiz(models.Model):
 
 class Question(models.Model):
     """
-    A quiz's question.
+    Base class for creating a quiz's question.
     """
     quiz = models.ForeignKey('Quiz', related_name='questions')
     content = models.CharField(max_length=1024)
-    is_free_input = models.BooleanField(default=False)
 
     def __unicode__(self):
         return u"{0.content}".format(self)
 
 
+class FreeQuestion(Question):
+    """
+    A quiz's question with a free answer.
+    """
+    answer_must_match = models.CharField(
+        max_length=1024,
+        blank=True,
+        null=True,
+        help_text='The good answer that the participant must provides.'
+    )
+
+
+class ChoiceQuestion(Question):
+    """
+    A quiz's question with answer proposals.
+    """
+    pass
+
+
 class Answer(models.Model):
     """
     A question answer.
+
+    Participant must choice only one for a question.
     """
     question = models.ForeignKey('Question', related_name='answers')
     content = models.CharField(max_length=1024, blank=True, null=True)
     is_correct = models.BooleanField(default=False)
-    match = models.CharField(max_length=1024,
-                             blank=True,
-                             null=True,
-                             help_text='Pattern that match the given answer.')
 
     def __unicode__(self):
         return u"{0.content} ({0.is_correct})".format(self)
@@ -117,19 +133,20 @@ class Answer(models.Model):
 class ParticipantAnswer(models.Model):
     """A participant answer."""
     class Meta:
-        unique_together = ('participant', 'answer',)
+        unique_together = (('participant', 'question'),)
 
-    participant = models.ForeignKey('Participant',
-                                    related_name="given_answers")
-    answer = models.ForeignKey('Answer',
-                               related_name="given_answers")
-    content = models.CharField(max_length=1024,
-                               blank=True,
-                               null=True)
+    participant = models.ForeignKey(
+        'Participant', related_name="given_answers")
+    question = models.ForeignKey(
+        'Question', related_name="given_answers")
+    answer = models.ForeignKey(
+        'Answer', blank=True, null=True)
+    content = models.CharField(
+        max_length=1024, blank=True, default="")
 
     def __unicode__(self):
         participant = u"{0.firstname} {0.lastname}".format(self.participant)
-        if self.answer.match_given:
+        if not self.answer:
             return u"{0}: {1.content}".format(participant, self)
         else:
             return u"{0}: {1.answer}".format(participant, self)

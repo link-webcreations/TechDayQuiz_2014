@@ -20,7 +20,6 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('content', models.CharField(max_length=1024, null=True, blank=True)),
                 ('is_correct', models.BooleanField(default=False)),
-                ('match', models.CharField(help_text=b'Pattern that match the given answer.', max_length=1024, null=True, blank=True)),
             ],
             options={
             },
@@ -43,8 +42,8 @@ class Migration(migrations.Migration):
             name='ParticipantAnswer',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('content', models.CharField(max_length=1024, null=True, blank=True)),
-                ('answer', models.ForeignKey(related_name=b'given_answers', to='quiz.Answer')),
+                ('content', models.CharField(default=b'', max_length=1024, blank=True)),
+                ('answer', models.ForeignKey(blank=True, to='quiz.Answer', null=True)),
                 ('participant', models.ForeignKey(related_name=b'given_answers', to='quiz.Participant')),
             ],
             options={
@@ -56,11 +55,29 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('content', models.CharField(max_length=1024)),
-                ('is_free_input', models.BooleanField(default=False)),
             ],
             options={
             },
             bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='FreeQuestion',
+            fields=[
+                ('question_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='quiz.Question')),
+                ('answer_must_match', models.CharField(help_text=b'The good answer that the participant must provides.', max_length=1024, null=True, blank=True)),
+            ],
+            options={
+            },
+            bases=('quiz.question',),
+        ),
+        migrations.CreateModel(
+            name='ChoiceQuestion',
+            fields=[
+                ('question_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='quiz.Question')),
+            ],
+            options={
+            },
+            bases=('quiz.question',),
         ),
         migrations.CreateModel(
             name='Quiz',
@@ -81,9 +98,15 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(related_name=b'questions', to='quiz.Quiz'),
             preserve_default=True,
         ),
+        migrations.AddField(
+            model_name='participantanswer',
+            name='question',
+            field=models.ForeignKey(related_name=b'given_answers', to='quiz.Question'),
+            preserve_default=True,
+        ),
         migrations.AlterUniqueTogether(
             name='participantanswer',
-            unique_together=set([('participant', 'answer')]),
+            unique_together=set([('participant', 'question')]),
         ),
         migrations.AddField(
             model_name='answer',
