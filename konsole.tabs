@@ -1,0 +1,3 @@
+title: Backend;; workdir: ./backend/techday;; profile:;;
+title: Frontend;; workdir: ./frontend;; profile:;;
+title: Manage;; workdir: .;; profile:;;
