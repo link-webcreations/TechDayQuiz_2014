@@ -1,10 +1,9 @@
 define([
-    'angular',
-    'config'
-], function(angular, config) {
+    'angular'
+], function(angular) {
     'use strict';
 
-    var module = angular.module('quizApp.main.services', ['ngResource']);
+    var module = angular.module('quizApp.main.services', []);
 
     module.service('Globals', function() {
         return {
