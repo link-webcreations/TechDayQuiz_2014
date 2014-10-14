@@ -140,7 +140,7 @@ class ParticipantAnswer(models.Model):
     answer = models.ForeignKey(
         'Answer', blank=True, null=True)
     content = models.CharField(
-        max_length=1024, blank=True, default="")
+        max_length=1024, blank=True, null=True)
 
     def __unicode__(self):
         participant = u"{0.firstname} {0.lastname}".format(self.participant)
