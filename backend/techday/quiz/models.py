@@ -103,8 +103,6 @@ class FreeQuestion(Question):
     """
     answer_must_match = models.CharField(
         max_length=1024,
-        blank=True,
-        null=True,
         help_text='The good answer that the participant must provides.'
     )
 
