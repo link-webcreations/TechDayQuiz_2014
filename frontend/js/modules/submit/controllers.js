@@ -29,8 +29,7 @@ define([
                     confirmButtonText: "Yes, send my answers!"
                 }, function() {
                     if ($scope.submitForm.$valid) {
-                    Participant.save($scope.participant).$promise
-                        .then(
+                        Participant.save($scope.participant).$promise.then(
                             function(new_participant) {
                                 QuizResults.participant = new_participant;
                                 QuizResults.send();
@@ -38,7 +37,8 @@ define([
                             },
                             function(errorResponse) {
                                 $scope.submit_errors = errorResponse.data;
-                        });
+                            }
+                        );
                     }
                 });
             };
