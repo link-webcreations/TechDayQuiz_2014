@@ -8,15 +8,17 @@ define([
                                  'quizApp.api.services',
                                  'quizApp.quiz.services']);
 
-    // Submit result controller
+    // Controller for submitting the results
     module.controller(
         'SubmitCtrl',
-        ['$scope', '$location', 'Participant', 'QuizResults',
-        function($scope, $location, Participant, QuizResults) {
-            console.log(QuizResults);
+        ['$scope', '$location', 'Globals', 'Participant', 'QuizResults',
+        function($scope, $location, Globals, Participant, QuizResults) {
+            if (!Globals.active_quiz) {
+                $location.path("/intro");
+            }
+
             $scope.submit_results = function() {
                 $scope.submit_errors = null;
-                $scope.submit_success = false;
 
                 swal({
                     title: "Are you sure?",
@@ -25,12 +27,13 @@ define([
                     showCancelButton: true,
                     confirmButtonColor: "#89C068",
                     confirmButtonText: "Yes, send my answers!"
-                },function() {
+                }, function() {
                     if ($scope.submitForm.$valid) {
                     Participant.save($scope.participant).$promise
                         .then(
-                            function(success) {
-                                $scope.submit_success = true;
+                            function(new_participant) {
+                                QuizResults.participant = new_participant;
+                                QuizResults.send();
                                 $location.path("/done");
                             },
                             function(errorResponse) {
@@ -42,12 +45,23 @@ define([
         }
     ]);
 
-    // Results controller
+    // Controller for showing results
     module.controller(
         'ResultCtrl',
-        ['$scope', 'Result',
-        function($scope, Result) {
-            $scope.results = Result.query({quiz: 1, participant: 1});
+        ['$scope', '$location', 'Result', 'Globals', 'QuizResults',
+        function($scope, $location, Result, Globals, QuizResults) {
+            if (!Globals.active_quiz) {
+                $location.path("/intro");
+            } else {
+                Result.query({
+                    quiz: Globals.active_quiz.id,
+                    participant: QuizResults.participant.id
+                }).$promise.then(function(results) {
+                    $scope.results = results;
+                    QuizResults.in_progress = false;
+                    Globals.active_quiz = null;
+                });
+            }
         }
     ]);
 });

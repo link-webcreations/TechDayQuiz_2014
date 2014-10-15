@@ -15,12 +15,12 @@
             <input type="text"
                    class="form-control"
                    data-ng-if="!question.answers.length"
-                   data-ng-model='quiz_answers.results[question.id]["content"]'
+                   data-ng-model='results[question.id]["content"]'
                    placeholder="Type your answer here"
                    required>
             <select class="form-control"
                     data-ng-if="question.answers.length"
-                    data-ng-model='quiz_answers.results[question.id]["choice"]'
+                    data-ng-model='results[question.id]["choice"]'
                     data-ng-options="answer.id as answer.content for answer in question.answers"
                     required>
                 <option style="display:none"
@@ -36,5 +36,3 @@
                 data-ng-click="prepare_submit()">Next &rarr;</button>
     </form>
 </div>
-<tt>{{ quiz_answers }}</tt>
-<br>

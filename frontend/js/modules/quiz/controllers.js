@@ -34,14 +34,10 @@ define([
                     {quiz: Globals.active_quiz.id}
                 ).$promise.then(function(success) {
                     questions = success;
-                    angular.forEach(questions, function(question) {
-                        if (question.answers.length > 0) {
-                            QuizResults.results[question.id] = {"choice": null};
-                        } else {
-                            QuizResults.results[question.id] = {"content": null};
-                        }
-                    });
-                    $scope.quiz_answers = QuizResults;
+                    if (!QuizResults.in_progress) {
+                        QuizResults.init(questions);
+                    }
+                    $scope.results = QuizResults.results;
                     $scope.questions = questions;
                 });
 

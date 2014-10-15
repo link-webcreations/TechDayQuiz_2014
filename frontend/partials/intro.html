@@ -1,5 +1,5 @@
 <div class="col-xs-6 col-xs-offset-3 pull-center">
-    <h1 class="page-heading">Welcome to the Faurecia TechDay 2014</h1>
+    <h1 class="page-heading">Welcome to the GIS TechDay 2014</h1>
     <br>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -25,5 +25,11 @@
         </select>
     </div>
     <p class="alert alert-danger"
-       data-ng-if="error">{{ ERRORS[error] }}</p>
+       data-ng-if="error">{{ ERRORS[error] }}
+       <br>
+       <a type="button"
+          class="btn btn-primary"
+          data-ng-if="error == 'QUIZ_NOT_FOUND'"
+          href="/admin"> Create one now.</a>
+    </p>
 </div>
