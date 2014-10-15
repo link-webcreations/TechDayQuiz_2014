@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible"
-          content="IE=edge,chrome=1">
+          content="IE=edge, chrome=1">
     <title>Faurecia TechDay 2014 - {{ section }}</title>
     <meta name="description"
           content="Faurecia GIS TechDay 2014">
@@ -27,6 +27,11 @@
                 <li data-ng-class="{ active: isActive('/done') }">Done</li>
             </ol>
         </div><!-- /.row -->
+        <!--[if IE]>
+            <div class="row">
+                <h1 class="pull-center browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</h1>
+            </div>
+        <![endif]-->
         <div class="row">
             <div class="main"
                  data-ng-view></div><!-- /.ng-view -->
@@ -39,7 +44,7 @@
             <img id="footerLogo"
                  src="img/logo_group_without_Baseline.png"
                  alt="Faurecia logo without Baseline"
-                 class="pull-right"></img>
+                 class="pull-right">
         </div>
     </div>
 

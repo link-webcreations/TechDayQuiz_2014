@@ -1,38 +1,41 @@
-<div class="col-xs-8 col-xs-offset-2">
+<div class="col-xs-6 col-xs-offset-3">
     <form name="quizForm"
-          class="quizForm"
+          class="quizForm form-horizontal"
           role="form"
           novalidate>
-        <legend>{{ quiz.name }}</legend>
+        <fieldset>
+            <legend>{{ quiz.name }}</legend>
 
-        <div class="form-group"
-             data-ng-repeat="question in questions">
-            <label>{{ question.content }}</label>
-            <span class="label label-danger"
-                  data-ng-if="XXXX.quizQuestion"
-                  data-ng-bind="XXXX.quizQuestion"></span>
+            <div class="form-group"
+                 data-ng-repeat="question in questions">
+                <label class="col-xs-6 control-label">{{ question.content }}</label>
 
-            <input type="text"
-                   class="form-control"
-                   data-ng-if="!question.answers.length"
-                   data-ng-model='results[question.id]["content"]'
-                   placeholder="Type your answer here"
-                   required>
-            <select class="form-control"
-                    data-ng-if="question.answers.length"
-                    data-ng-model='results[question.id]["choice"]'
-                    data-ng-options="answer.id as answer.content for answer in question.answers"
-                    required>
-                <option style="display:none"
-                        value="">select an answer</option>
-            </select>
-        </div>
+                <div class="col-xs-6">
+                    <input type="text"
+                           class="form-control"
+                           data-ng-if="!question.answers.length"
+                           data-ng-model='results[question.id]["content"]'
+                           placeholder="type your answer here"
+                           required>
+                </div>
+                <div class="col-xs-3">
+                    <select class="form-control"
+                            data-ng-if="question.answers.length"
+                            data-ng-model='results[question.id]["choice"]'
+                            data-ng-options="answer.id as answer.content for answer in question.answers"
+                            required>
+                        <option style="display:none"
+                                value="">select an answer</option>
+                    </select>
+                </div>
+            </div>
 
-        <a href="/"
-           class="btn btn-lg btn-primary pull-left"
-           role="button">&larr; Previous</a>
-        <button class="btn btn-lg btn-primary pull-right"
-                data-ng-disabled="quizForm.$invalid"
-                data-ng-click="prepare_submit()">Next &rarr;</button>
+            <a href="/"
+               class="btn btn-lg btn-primary pull-left"
+               role="button">&larr; Previous</a>
+            <button class="btn btn-lg btn-primary pull-right"
+                    data-ng-disabled="quizForm.$invalid"
+                    data-ng-click="prepare_submit()">Next &rarr;</button>
+        </fieldset>
     </form>
 </div>
