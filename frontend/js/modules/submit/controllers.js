@@ -5,13 +5,15 @@ define([
 
     var module = angular.module('quizApp.submit.controllers',
                                 ['quizApp.main.services',
-                                 'quizApp.api.services']);
+                                 'quizApp.api.services',
+                                 'quizApp.quiz.services']);
 
     // Submit result controller
     module.controller(
         'SubmitCtrl',
-        ['$scope', '$location', 'Participant',
-        function($scope, $location, Participant) {
+        ['$scope', '$location', 'Participant', 'QuizResults',
+        function($scope, $location, Participant, QuizResults) {
+            console.log(QuizResults);
             $scope.submit_results = function() {
                 $scope.submit_errors = null;
                 $scope.submit_success = false;
