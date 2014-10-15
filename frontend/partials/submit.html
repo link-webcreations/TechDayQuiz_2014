@@ -55,10 +55,18 @@
                        data-ng-model="participant.email"
                        required>
             </div>
-
-            <button class="btn btn-lg btn-primary btn-block"
-                    data-ng-disabled="submitForm.$invalid"
-                    data-ng-click="submit_results()">Submit</button>
+            <div class="btn-group btn-group-lg btn-group-justified">
+                <div class="btn-group">
+                <a href="#/quiz"
+                   class="btn btn-default"
+                   role="button">Previous</a>
+                </div>
+                <div class="btn-group">
+                <button class="btn btn-primary"
+                        data-ng-disabled="submitForm.$invalid"
+                        data-ng-click="submit_results()">Submit</button>
+                </div>
+            </div>
         </fieldset>
     </form>
 </div>
