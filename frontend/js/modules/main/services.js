@@ -5,9 +5,8 @@ define([
 
     var module = angular.module('quizApp.main.services', []);
 
-    module.service('Globals', function() {
-        return {
+    module.value('Globals', {
             active_quiz: null,
-        };
-    });
+        }
+    );
 });
