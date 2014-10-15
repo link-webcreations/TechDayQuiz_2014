@@ -18,9 +18,8 @@ class Migration(migrations.Migration):
             name='Answer',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('content', models.CharField(max_length=1024)),
+                ('content', models.CharField(max_length=1024, null=True, blank=True)),
                 ('is_correct', models.BooleanField(default=False)),
-                ('match_given', models.BooleanField(default=False, verbose_name=b'Match given answer ?')),
             ],
             options={
             },
@@ -30,10 +29,10 @@ class Migration(migrations.Migration):
             name='Participant',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('firstname', models.CharField(max_length=255, validators=[django.core.validators.RegexValidator(regex=b'^(?u)([^\\W\\d_]|\\s)+$', message=b'Only letters here.', code=b'invalid_lastname')])),
-                ('lastname', models.CharField(max_length=255, validators=[django.core.validators.RegexValidator(regex=b'^(?u)([^\\W\\d_]|\\s)+$', message=b'Only letters here.', code=b'invalid_lastname')])),
+                ('firstname', models.CharField(max_length=255, validators=[django.core.validators.RegexValidator(regex=b'^(?u)([^\\W\\d_]|[-\\s])+$', message=b'Only letters here.', code=b'invalid_lastname')])),
+                ('lastname', models.CharField(max_length=255, validators=[django.core.validators.RegexValidator(regex=b'^(?u)([^\\W\\d_]|[-\\s])+$', message=b'Only letters here.', code=b'invalid_lastname')])),
                 ('email', models.EmailField(unique=True, max_length=254, validators=[quiz.validators.validate_email_from_faurecia])),
-                ('site', models.CharField(max_length=255, validators=[django.core.validators.RegexValidator(regex=b'^(?u)([^\\W\\d_]|\\s)+$', message=b'Only letters here.', code=b'invalid_lastname')])),
+                ('site', models.CharField(max_length=255, validators=[django.core.validators.RegexValidator(regex=b'^(?u)([^\\W\\d_]|[-\\s])+$', message=b'Only letters here.', code=b'invalid_lastname')])),
             ],
             options={
             },
@@ -44,7 +43,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('content', models.CharField(max_length=1024, null=True, blank=True)),
-                ('answer', models.ForeignKey(related_name=b'given_answers', to='quiz.Answer')),
+                ('answer', models.ForeignKey(blank=True, to='quiz.Answer', null=True)),
                 ('participant', models.ForeignKey(related_name=b'given_answers', to='quiz.Participant')),
             ],
             options={
@@ -60,6 +59,25 @@ class Migration(migrations.Migration):
             options={
             },
             bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='FreeQuestion',
+            fields=[
+                ('question_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='quiz.Question')),
+                ('answer_must_match', models.CharField(help_text=b'The good answer that the participant must provides.', max_length=1024)),
+            ],
+            options={
+            },
+            bases=('quiz.question',),
+        ),
+        migrations.CreateModel(
+            name='ChoiceQuestion',
+            fields=[
+                ('question_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='quiz.Question')),
+            ],
+            options={
+            },
+            bases=('quiz.question',),
         ),
         migrations.CreateModel(
             name='Quiz',
@@ -80,9 +98,15 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(related_name=b'questions', to='quiz.Quiz'),
             preserve_default=True,
         ),
+        migrations.AddField(
+            model_name='participantanswer',
+            name='question',
+            field=models.ForeignKey(related_name=b'given_answers', to='quiz.Question'),
+            preserve_default=True,
+        ),
         migrations.AlterUniqueTogether(
             name='participantanswer',
-            unique_together=set([('participant', 'answer')]),
+            unique_together=set([('participant', 'question')]),
         ),
         migrations.AddField(
             model_name='answer',

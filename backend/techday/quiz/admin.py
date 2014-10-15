@@ -3,7 +3,6 @@
 from django.contrib import admin
 
 import models
-from .forms import AnswerInlineFormset
 
 
 class TechdayAdminSite(admin.sites.AdminSite):
@@ -14,7 +13,6 @@ class TechdayAdminSite(admin.sites.AdminSite):
 class QuestionAnswerInline(admin.StackedInline):
     model = models.Answer
     extra = 1
-    formset = AnswerInlineFormset
 
 
 class QuizAdmin(admin.ModelAdmin):
@@ -29,8 +27,12 @@ class QuizAdmin(admin.ModelAdmin):
 class QuestionAdmin(admin.ModelAdmin):
     list_display = ('content', 'quiz')
     list_filter = ('quiz__name',)
+
+
+class ChoiceQuestionAdmin(QuestionAdmin):
     inlines = (QuestionAnswerInline, )
 
 admin_site = TechdayAdminSite()
 admin_site.register(models.Quiz, QuizAdmin)
-admin_site.register(models.Question, QuestionAdmin)
+admin_site.register(models.ChoiceQuestion, ChoiceQuestionAdmin)
+admin_site.register(models.FreeQuestion, QuestionAdmin)

@@ -5,41 +5,63 @@ define([
 
     var module = angular.module('quizApp.submit.controllers',
                                 ['quizApp.main.services',
-                                 'quizApp.api.services']);
+                                 'quizApp.api.services',
+                                 'quizApp.quiz.services']);
 
-    // Submit result controller
-    module.controller('SubmitCtrl',
-                      ['$scope', '$location', 'Participant', function($scope, $location, Participant) {
-        $scope.submit_results = function() {
-            $scope.submit_errors = null;
-            $scope.submit_success = false;
+    // Controller for submitting the results
+    module.controller(
+        'SubmitCtrl',
+        ['$scope', '$location', 'Globals', 'Participant', 'QuizResults',
+        function($scope, $location, Globals, Participant, QuizResults) {
+            if (!Globals.active_quiz) {
+                $location.path("/intro");
+            }
 
-            swal({
-                title: "Are you sure?",
-                text: "You will not be able to change anything!",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#89C068",
-                confirmButtonText: "Yes, send my answers!"
-            },function() {
-                if ($scope.submitForm.$valid) {
-                Participant.save($scope.participant).$promise
-                    .then(
-                        function(success) {
-                            $scope.submit_success = true;
-                            $location.path("/done");
-                        },
-                        function(errorResponse) {
-                            $scope.submit_errors = errorResponse.data;
-                    });
-                }
-            });
-        };
-    }]);
+            $scope.submit_results = function() {
+                $scope.submit_errors = null;
 
-    // Results controller
-    module.controller('ResultCtrl',
-                      ['$scope', 'Result', function($scope, Result) {
-        $scope.results = Result.query({quiz: 1, participant: 1});
-    }]);
+                swal({
+                    title: "Are you sure?",
+                    text: "You will not be able to change anything!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#89C068",
+                    confirmButtonText: "Yes, send my answers!"
+                }, function() {
+                    if ($scope.submitForm.$valid) {
+                        Participant.save($scope.participant).$promise.then(
+                            function(new_participant) {
+                                QuizResults.participant = new_participant;
+                                QuizResults.send();
+                                $location.path("/done");
+                            },
+                            function(errorResponse) {
+                                $scope.submit_errors = errorResponse.data;
+                            }
+                        );
+                    }
+                });
+            };
+        }
+    ]);
+
+    // Controller for showing results
+    module.controller(
+        'ResultCtrl',
+        ['$scope', '$location', 'Result', 'Globals', 'QuizResults',
+        function($scope, $location, Result, Globals, QuizResults) {
+            if (!Globals.active_quiz) {
+                $location.path("/intro");
+            } else {
+                Result.query({
+                    quiz: Globals.active_quiz.id,
+                    participant: QuizResults.participant.id
+                }).$promise.then(function(results) {
+                    $scope.results = results;
+                    QuizResults.in_progress = false;
+                    Globals.active_quiz = null;
+                });
+            }
+        }
+    ]);
 });

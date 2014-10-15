@@ -165,6 +165,13 @@ legend {
   text-align: right;
 }
 
+/* IMG style */
+#footerLogo {
+  width: 15%;
+}
+#beingFaurecia {
+  width: 100%;
+}
 
 
 /*

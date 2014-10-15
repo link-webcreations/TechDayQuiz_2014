@@ -7,7 +7,7 @@ from django.core.validators import ValidationError
 from django.core.validators import RegexValidator
 
 
-validate_letters_only = RegexValidator(regex='^(?u)([^\W\d_]|\s)+$',
+validate_letters_only = RegexValidator(regex='^(?u)([^\W\d_]|[-\s])+$',
                                        message='Only letters here.',
                                        code='invalid_lastname')
 

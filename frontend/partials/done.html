@@ -1,11 +1,26 @@
 <div class="col-xs-8 col-xs-offset-2">
-    <div class= "pull-center" data-ng-repeat="result in results">
-        <h1>Thank you for your participation <strong>{{ result.participant }}</strong></h1>
-        <img src="" alt="Faurecia logo"></img><br>
-        <img src="" alt="Technical perfection, automotive passion"></img>
-        <br><br>
-        <p>You answered <strong>{{ result.results[0].num_good }} / {{ result.results[0].total }}</strong> questions correctly for <strong>{{ result.results[0].quiz }}</strong>.</p>
-        <br>
+    <div class="row">
+        <div class="pull-center"
+             data-ng-repeat="result in results">
+            <h1>Thank you for your participation <strong>{{ result.participant }}</strong></h1>
+            <br><br>
+            <img src="../img/logo_group_with_baseline.png"
+                 alt="Faurecia logo with Baseline"></img>
+            <br><br>
+            <p>You answered <strong>{{ result.results[0].num_good }} / {{ result.results[0].total }}</strong> questions correctly for <strong>{{ result.results[0].quiz }}</strong>.</p>
+            <br>
+        </div>
     </div>
-    <a href="/" class="btn btn-link pull-right" role="button">Start a new Quiz &infin;</a>
+    <div class="row">
+        <a href="/"
+           class="btn btn-link pull-right"
+           role="button">
+           <img id="beingFaurecia"
+                src="../img/being_faurecia.png"
+                alt="being faurecia"></img>
+        </a>
+    </div>
+    <div class="row">
+        <p class="pull-right"><em>To start quiz, clic on icon</em></p>
+    </div>
 </div>

@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en" data-ng-controller="MainCtrl">
+<html class="no-js"
+      lang="en"
+      data-ng-controller="MainCtrl">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge,chrome=1">
     <title>Faurecia TechDay 2014 - {{ section }}</title>
-    <meta name="description" content="Faurecia GIS TechDay Quiz">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+          content="Faurecia GIS TechDay 2014">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="bower_components/sweetalert/lib/sweet-alert.css">
@@ -23,17 +28,22 @@
             </ol>
         </div><!-- /.row -->
         <div class="row">
-            <div class="main" data-ng-view></div><!-- /.ng-view -->
+            <div class="main"
+                 data-ng-view></div><!-- /.ng-view -->
         </div><!-- /.row -->
     </div><!-- /.container -->
 
     <div class="footer">
         <div class="container">
             <p class="pull-left">Copyright &copy; Faurecia 2014, all rights reserved.</p>
-            <img src="" alt="Faurecia logo" class="pull-right"></img>
+            <img id="footerLogo"
+                 src="img/logo_group_without_Baseline.png"
+                 alt="Faurecia logo without Baseline"
+                 class="pull-right"></img>
         </div>
     </div>
 
-    <script data-main="js/main" src="bower_components/requirejs/require.js"></script>
+    <script data-main="js/main"
+            src="bower_components/requirejs/require.js"></script>
 </body>
 </html>

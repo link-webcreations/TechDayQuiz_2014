@@ -1,21 +1,38 @@
 <div class="col-xs-8 col-xs-offset-2">
-    <form name="quizForm" class="quizForm" role="form" novalidate>
+    <form name="quizForm"
+          class="quizForm"
+          role="form"
+          novalidate>
         <legend>{{ quiz.name }}</legend>
 
-        <div class="form-group" data-ng-repeat="question in questions">
+        <div class="form-group"
+             data-ng-repeat="question in questions">
             <label>{{ question.content }}</label>
-            <span class="label label-danger" data-ng-if="XXXX.quizQuestion" data-ng-bind="XXXX.quizQuestion"></span>
+            <span class="label label-danger"
+                  data-ng-if="XXXX.quizQuestion"
+                  data-ng-bind="XXXX.quizQuestion"></span>
 
-            <input data-ng-repeat="answer in question.answers" data-ng-if="answer.match_given" type="text" class="form-control" name="quizQuestion" placeholder="Type your answer here" required>
-
-            <div data-ng-if="!answer.match_given">
-                <select class="form-control" name="quizQuestion" data-ng-model="questions" data-ng-options="answer.content for answer in question.answers" required>
-                    <option style="display:none" value="">select an answer</option>
-                </select>
-            </div>
+            <input type="text"
+                   class="form-control"
+                   data-ng-if="!question.answers.length"
+                   data-ng-model='results[question.id]["content"]'
+                   placeholder="Type your answer here"
+                   required>
+            <select class="form-control"
+                    data-ng-if="question.answers.length"
+                    data-ng-model='results[question.id]["choice"]'
+                    data-ng-options="answer.id as answer.content for answer in question.answers"
+                    required>
+                <option style="display:none"
+                        value="">select an answer</option>
+            </select>
         </div>
 
-        <a href="/" class="btn btn-lg btn-primary pull-left" role="button">&larr; Previous</a>
-        <button class="btn btn-lg btn-primary pull-right" data-ng-disabled="quizForm.$invalid" data-ng-click="select_answer(answer)">Next &rarr;</button>
+        <a href="/"
+           class="btn btn-lg btn-primary pull-left"
+           role="button">&larr; Previous</a>
+        <button class="btn btn-lg btn-primary pull-right"
+                data-ng-disabled="quizForm.$invalid"
+                data-ng-click="prepare_submit()">Next &rarr;</button>
     </form>
 </div>

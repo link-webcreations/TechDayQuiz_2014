@@ -23,7 +23,7 @@ class ParticipantSerializer(serializers.HyperlinkedModelSerializer):
 class AnswerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Answer
-        fields = ('id', 'question', 'content', 'match_given')
+        fields = ('id', 'question', 'content')
 
 
 class QuestionSerializer(serializers.HyperlinkedModelSerializer):
@@ -31,7 +31,7 @@ class QuestionSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Question
-        fields = ('id', 'content', 'answers',)
+        fields = ('id', 'content', 'answers')
 
 
 class QuizSerializer(serializers.HyperlinkedModelSerializer):
@@ -43,6 +43,6 @@ class QuizSerializer(serializers.HyperlinkedModelSerializer):
 class ParticipantAnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = ParticipantAnswer
-        fields = ('id', 'participant', 'answer', 'content')
+        fields = ('id', 'participant', 'question', 'answer', 'content')
         if not settings.DEBUG:
-            write_only_fields = ('answer', 'content',)
+            write_only_fields = ('question', 'answer', 'content',)
