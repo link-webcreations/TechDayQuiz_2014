@@ -11,13 +11,19 @@ define([
         ['$scope', '$location', 'Quiz', 'Globals',
         function($scope, $location, Quiz, Globals) {
             $scope.ERRORS = {
-                "QUIZ_FETCH": "Unable to fetch quizzes !"
+                "QUIZ_FETCH": "Unable to fetch quizzes !",
+                "QUIZ_NOT_FOUND": "There is no quiz available !"
             }
 
             Quiz.query().$promise.then(
             function(success) {
-                $scope.quizzes = success;
-                $scope.ready = true;
+                if (success.length > 0) {
+                    $scope.quizzes = success;
+                    $scope.ready = true;
+                } else {
+                    $scope.ready = false;
+                    $scope.error = "QUIZ_NOT_FOUND";
+                }
             },
             function(error) {
                 $scope.ready = false;
