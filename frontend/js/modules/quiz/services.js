@@ -38,7 +38,6 @@ define([
         // Send the results
         this.send = function() {
             if (this.validate() && this.participant) {
-                console.log("Sending results...");
                 for (var question_id in this.results) {
                     var result = new ParticipantAnswer();
                     result.participant = this.participant.id
