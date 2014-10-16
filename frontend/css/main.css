@@ -191,6 +191,9 @@ legend {
 .quizForm input:focus {
   width: 100%;
 }
+.quizForm .col-xs-3 {
+  padding-right: 0;
+}
 /* IMG style */
 #footerLogo {
   width: 15%;
