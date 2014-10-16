@@ -222,3 +222,8 @@ body {
 .footer > .container {
   margin: 20px auto;
 }
+.footer a:link,
+.footer a:visited {
+  color: white;
+  text-decoration: underline;
+}

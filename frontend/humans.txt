@@ -8,5 +8,9 @@
 
 # TECHNOLOGY COLOPHON
 
-    CSS3, HTML5
-    Apache Server Configs, Bower, AngujarJs, Bootstrap
+    HTML5, CSS3, JS
+    Django, Node.js, Bower
+
+# THIRD-PARTY
+
+    AngujarJS, Bootstrap, SweetAlert, RequireJS
