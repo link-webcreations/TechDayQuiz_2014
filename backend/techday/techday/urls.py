@@ -21,6 +21,7 @@ router.register('participant_answers', ParticipantAnswerAPI)
 
 urlpatterns = patterns(
     '',
+    (r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/', include(admin_site.urls)),
     url(r'^api/', include(router.urls)),
     url(r'^api/results/$', QuizResultsView.as_view()),

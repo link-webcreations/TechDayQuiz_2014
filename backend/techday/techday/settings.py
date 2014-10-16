@@ -30,8 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'django_admin_bootstrapped.bootstrap3',
-    'django_admin_bootstrapped',
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,6 +51,17 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.core.context_processors.request",
+    "django.contrib.messages.context_processors.messages"
+)
+
 if DEBUG:
     MIDDLEWARE_CLASSES.insert(0, 'corsheaders.middleware.CorsMiddleware')
     CORS_ORIGIN_ALLOW_ALL = True
@@ -59,6 +69,10 @@ if DEBUG:
 ROOT_URLCONF = 'techday.urls'
 
 WSGI_APPLICATION = 'techday.wsgi.application'
+
+
+# Admin
+GRAPPELLI_ADMIN_TITLE = 'Techday Admin'
 
 
 # Database
