@@ -1,0 +1,28 @@
+Source: techday-2014
+Section: misc
+Priority: optional
+Maintainer: Vincent BESANCON <besancon.vincent@gmail.com>
+Build-Depends:
+    debhelper (>= 9)
+Standards-Version: 3.9.5
+Vcs-Git: http://monitoring-dc.app.corp/git/web/techday_2014.git
+Vcs-Browser: http://monitoring-dc.app.corp/git/?p=web/techday_2014.git;a=summary
+
+Package: faurecia-techday-quiz-backend
+Architecture: all
+Depends:
+    ${misc:Depends},
+    python2.7,
+    python-virtualenv,
+    libapache2-mod-wsgi,
+Description: Faurecia GIS TechDay 2014 Quiz (Backend)
+ Package that install the backend API for the Faurecia GIS TechDay 2014 quiz
+ web application.
+
+Package: faurecia-techday-quiz-frontend
+Architecture: all
+Depends:
+    ${misc:Depends},
+Description: Faurecia GIS TechDay 2014 Quiz (Frontend)
+ Package that install the frontend for the Faurecia GIS TechDay 2014 quiz
+ web application.
