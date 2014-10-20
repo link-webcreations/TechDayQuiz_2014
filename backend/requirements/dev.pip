@@ -1,12 +1,6 @@
 # Development dependencies
 #
-# Install production deps
--r requirements-prod.txt
-
-# Needed to build wheels
 wheel
-
-# Install development deps
 ipython==2.2.0
 Markdown==2.5
 django-cors-headers==0.13

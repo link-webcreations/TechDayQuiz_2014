@@ -1,0 +1,3 @@
+# Install all needed dependencies for production environment
+#
+-r requirements/prod.pip

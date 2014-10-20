@@ -1,0 +1,4 @@
+# Install all needed dependencies for contributing to the project
+#
+-r requirements/prod.pip
+-r requirements/dev.pip
