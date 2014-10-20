@@ -38,8 +38,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             'angular-cookies': '../bower_components/angular-cookies/angular-cookies.min',
             'angular-resource': '../bower_components/angular-resource/angular-resource.min',
             'jquery': '../bower_components/jquery/dist/jquery.min',
-            'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap.min',
-            'sweetalert': '../bower_components/sweetalert/lib/sweet-alert.min'
+            'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap.min'
         },
 
         // angular does not support AMD out of the box, put it in a shim
@@ -66,9 +65,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     requirejs([
         'jquery',
         'bootstrap',
-        'sweetalert',
         'app'
-    ], function ($, _bootstrap, _sweetalert, app) {
+    ], function ($, _bootstrap, app) {
       app.init();
     });
 }());

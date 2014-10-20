@@ -20,27 +20,18 @@ define([
             $scope.submit_results = function() {
                 $scope.submit_errors = null;
 
-                swal({
-                    title: "Are you sure?",
-                    text: "You will not be able to change anything!",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#89C068",
-                    confirmButtonText: "Yes, send my answers!"
-                }, function() {
-                    if ($scope.submitForm.$valid) {
-                        Participant.save($scope.participant).$promise.then(
-                            function(new_participant) {
-                                QuizResults.participant = new_participant;
-                                QuizResults.send();
-                                $location.path("/done");
-                            },
-                            function(errorResponse) {
-                                $scope.submit_errors = errorResponse.data;
-                            }
-                        );
-                    }
-                });
+                if ($scope.submitForm.$valid) {
+                    Participant.save($scope.participant).$promise.then(
+                        function(new_participant) {
+                            QuizResults.participant = new_participant;
+                            QuizResults.send();
+                            $location.path("/done");
+                        },
+                        function(errorResponse) {
+                            $scope.submit_errors = errorResponse.data;
+                        }
+                    );
+                }
             };
         }
     ]);
