@@ -5,10 +5,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from .validators import (
-    validate_letters_only,
-    validate_email_from_faurecia,
-)
+from .validators import validate_email_from_faurecia
 
 
 class Participant(models.Model):
@@ -16,21 +13,21 @@ class Participant(models.Model):
     A participant who submit a quiz result.
     """
     firstname = models.CharField(max_length=255,
-                                 validators=[validate_letters_only])
+                                 blank=True)
     lastname = models.CharField(max_length=255,
-                                validators=[validate_letters_only])
+                                blank=True)
     email = models.EmailField(max_length=254,
                               validators=[validate_email_from_faurecia],
                               unique=True)
-    site = models.CharField(max_length=255,
-                            validators=[validate_letters_only])
 
     def save(self, *args, **kwargs):
         """Customize saving of model."""
-        self.firstname = self.firstname.title()
-        self.lastname = self.lastname.upper()
-        self.email = self.email.lower()
-        self.site = self.site.upper()
+        email = self.email.lower()
+        firstname, lastname = email.split('@')[0].split('.')
+
+        self.firstname = firstname.title()
+        self.lastname = lastname.upper()
+        self.email = email
         super(Participant, self).save(*args, **kwargs)
 
     def show_results(self, quiz_id=None):

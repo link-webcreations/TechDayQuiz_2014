@@ -17,7 +17,7 @@ from .models import (
 class ParticipantSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Participant
-        fields = ('url', 'id', 'firstname', 'lastname', 'email', 'site',)
+        fields = ('url', 'id', 'firstname', 'lastname', 'email')
 
 
 class AnswerSerializer(serializers.HyperlinkedModelSerializer):
