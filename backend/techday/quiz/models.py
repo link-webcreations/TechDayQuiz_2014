@@ -13,9 +13,11 @@ class Participant(models.Model):
     A participant who submit a quiz result.
     """
     firstname = models.CharField(max_length=255,
-                                 blank=True)
+                                 blank=True,
+                                 null=True)
     lastname = models.CharField(max_length=255,
-                                blank=True)
+                                blank=True,
+                                null=True)
     email = models.EmailField(max_length=254,
                               validators=[validate_email_from_faurecia],
                               unique=True)
