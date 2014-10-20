@@ -32,9 +32,6 @@ h1 {
 h2 {
   margin-bottom: 40px;
 }
-.pull-center {
-  text-align: center;
-}
 /* For IE */
 .browserupgrade {
     margin: 0.2em 0;
