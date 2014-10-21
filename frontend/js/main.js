@@ -26,7 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     'use strict';
 
     requirejs.config({
-        baseUrl: '/js',
+        baseUrl: '/techday/js',
 
         // For DEBUG only
         urlArgs: "bust=" + (new Date()).getTime(),
