@@ -52,6 +52,7 @@ coverage.xml
 # Django stuff:
 *.log
 *.sqlite3
+backend/techday/techday/settings_local.py
 
 # Sphinx documentation
 docs/_build/
