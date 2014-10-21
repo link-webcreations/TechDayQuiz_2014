@@ -3,9 +3,9 @@ define([], function() {
 
     return {
         // API entry point
-        'api_entry_point': 'http://localhost:8000/api',
+        'api_entry_point': '/backend/api',
 
         // The directory where to find all partials
-        'partials_dir': '../partials'
+        'partials_dir': '/techday/partials'
     };
 });

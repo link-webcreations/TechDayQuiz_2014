@@ -1,0 +1,4 @@
+#
+# Some options to configure dpkg-source
+#
+tar-ignore = ".git .gitignore"
