@@ -21,11 +21,12 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+export PATH := /opt/nodejs/bin:$(PATH)
+
 #export http_proxy=http://127.0.1.1:3128/
 #export https_proxy=http://127.0.1.1:3128/
 
 SHELL=/bin/bash
-.SHELLFLAGS=-l
 
 WHEELS_CACHE=$(CURDIR)/.wheels_cache
 WHEELS=$(CURDIR)/wheels
@@ -108,7 +109,14 @@ python-env_create:
 		( \
 			source ${PY_ENV_ACTIVATE}; \
 			pip install wheel; \
-			pip install --upgrade pip setuptools; \
+			pip wheel \
+				-w ${WHEELS_CACHE} \
+				--download-cache ${PIP_CACHE} \
+				wheel pip setuptools; \
+			pip install \
+				--no-index \
+				--find-links=${WHEELS_CACHE} \
+				--upgrade pip setuptools; \
 		) || \
 		echo "Python environment already created."
 
