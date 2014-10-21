@@ -19,6 +19,15 @@ set -e
 
 INSTALL_DIR="/usr/share/techday-2014"
 
+create_database() {
+    ( \
+        . ${INSTALL_DIR}/.virtualenvs/techday/bin/activate;
+        cd ${INSTALL_DIR}/backend/techday;
+        ./manage.py syncdb --noinput;
+    )
+    chown techday:techday ${INSTALL_DIR}/backend/techday/db.sqlite3
+}
+
 create_virtualenv() {
     virtualenv ${INSTALL_DIR}/.virtualenvs/techday
     ( \
@@ -41,6 +50,7 @@ case "$1" in
     configure)
         create_virtualenv
         install_apache_conf
+        create_database
     ;;
     abort-upgrade|abort-remove|abort-deconfigure)
     ;;
