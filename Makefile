@@ -1,3 +1,4 @@
+#!/usr/bin/make -f
 # Copyright (c) 2014 Vincent BESANÇON <besancon.vincent@gmail.com>
 # Copyright (c) 2014 Yves ANDOLFATTO <yves.andolfatto@gmail.com>
 # 
@@ -20,17 +21,17 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-export http_proxy=http://127.0.1.1:3128/
-export https_proxy=http://127.0.1.1:3128/
+#export http_proxy=http://127.0.1.1:3128/
+#export https_proxy=http://127.0.1.1:3128/
 
 SHELL=/bin/bash
 .SHELLFLAGS=-l
 
-WHEELS_CACHE=/tmp/wheels_cache
+WHEELS_CACHE=$(CURDIR)/.wheels_cache
 WHEELS=$(CURDIR)/wheels
-PIP_CACHE=/tmp/pip_download_cache
+PIP_CACHE=$(CURDIR)/.pip_download_cache
 
-VIRTUALENVS_DIR=/tmp/virtualenvs
+VIRTUALENVS_DIR=$(CURDIR)/.virtualenvs
 PY_ENV=${VIRTUALENVS_DIR}/techday
 PY_ENV_ACTIVATE=${PY_ENV}/bin/activate
 
@@ -169,8 +170,6 @@ develop: install-deps-dev
 
 .PHONY: install
 install: develop
-	@env
-	@echo $(CURDIR)
 	@install -d $(DESTDIR)/usr/share/techday-2014/
 	@cp -ra backend $(DESTDIR)/usr/share/techday-2014
 	@cp -ra wheels $(DESTDIR)/usr/share/techday-2014

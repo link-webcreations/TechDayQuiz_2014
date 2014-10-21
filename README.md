@@ -12,6 +12,7 @@ Ensure you have the following installed:
 
 * NodeJS >= 0.10.32
 * GNU Make
+    * Ubuntu: `sudo apt-get install make`
 * Python 2.7.x (with development headers)
     * Ubuntu: `sudo apt-get install python2.7-dev`
 * [virtualenv](http://virtualenv.readthedocs.org/)
@@ -26,6 +27,18 @@ To install all the needed dependencies for development:
 
 ```
 $ make develop
+```
+
+This will creates:
+
+* A python virtualenv in `.virtualenvs/techday/`.
+* A cache directory containing pip's wheels in `.wheels_cache/`.
+* A download cache for pip in `.pip_download_cache/`.
+
+Enable the Python virtualenv using:
+
+```
+$ . .virtualenvs/techday/bin/activate
 ```
 
 ### Start the backend
@@ -64,4 +77,4 @@ Start the HTTP server:
 $ ./node_modules/.bin/http-server
 ```
 
-Open your browser to http://localhost:8000/.
+Open your browser to http://localhost:8080/.

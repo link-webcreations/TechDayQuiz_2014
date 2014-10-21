@@ -24,7 +24,7 @@ var/
 
 # Virtualenv Python
 .virtualenvs/
-.pipcache/
+.pip_download_cache/
 .wheels_cache/
 
 # PyInstaller
