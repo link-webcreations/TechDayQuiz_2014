@@ -29,6 +29,7 @@ case "$1" in
                     --group                        \
                     --gecos "Techday 2014 Web App" techday
         fi
+        chown techday:techday ${INSTALL_DIR} -R
     ;;
     abort-upgrade|abort-remove|abort-deconfigure)
     ;;
