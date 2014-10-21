@@ -8,13 +8,23 @@ Standards-Version: 3.9.5
 Vcs-Git: http://monitoring-dc.app.corp/git/web/techday_2014.git
 Vcs-Browser: http://monitoring-dc.app.corp/git/?p=web/techday_2014.git;a=summary
 
+Package: faurecia-techday-quiz-common
+Architecture: all
+Depends:
+    ${misc:Depends},
+    adduser,
+Description: Faurecia GIS TechDay 2014 Quiz (Common)
+ Package that install common files needed for the Faurecia GIS TechDay 2014 quiz
+ web application.
+
 Package: faurecia-techday-quiz-backend
 Architecture: all
 Depends:
     ${misc:Depends},
-    python2.7,
-    python-virtualenv,
+    faurecia-techday-quiz-common,
     libapache2-mod-wsgi,
+    python-virtualenv,
+    python2.7,
 Description: Faurecia GIS TechDay 2014 Quiz (Backend)
  Package that install the backend API for the Faurecia GIS TechDay 2014 quiz
  web application.
@@ -23,6 +33,7 @@ Package: faurecia-techday-quiz-frontend
 Architecture: all
 Depends:
     ${misc:Depends},
+    faurecia-techday-quiz-common,
 Description: Faurecia GIS TechDay 2014 Quiz (Frontend)
  Package that install the frontend for the Faurecia GIS TechDay 2014 quiz
  web application.
