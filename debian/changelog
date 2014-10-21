@@ -1,3 +1,12 @@
+techday-2014 (1.0.2) trusty; urgency=medium
+
+  * Refactor README to show what the develop target do.
+  * Add gbp postexport to keep caches (pip, wheels) when building package.
+  * Makefile: install pip, setuptools as wheel in the cache.
+  * [backend] quiz: add support for free question results.
+
+ -- Vincent BESANCON <besancon.vincent@gmail.com>  Wed, 22 Oct 2014 01:25:59 +0200
+
 techday-2014 (1.0.1) trusty; urgency=medium
 
   * [frontend] fix bad links to create a new quiz.
