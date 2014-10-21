@@ -2,6 +2,8 @@
 
 """Quiz application models definitions."""
 
+from difflib import SequenceMatcher
+
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -45,11 +47,31 @@ class Participant(models.Model):
             'total': 0,
         }
 
-        for given in self.given_answers.filter(answer__question__quiz=quiz_id):
-            if given.answer.is_correct:
-                results['good'].append(given.answer.question.content)
-            else:
-                results['bad'].append(given.answer.question.content)
+        for given in self.given_answers.filter(question__quiz=quiz_id):
+            # For questions with choices
+            if hasattr(given.question, 'choicequestion'):
+                if given.answer.is_correct:
+                    results['good'].append(given.answer.question.content)
+                else:
+                    results['bad'].append(given.answer.question.content)
+            # For questions with free answer
+            elif hasattr(given.question, 'freequestion'):
+                response = given.question.freequestion.answer_must_match
+                if given.content.isnumeric() and response.isnumeric():
+                    content = int(given.content)
+                    response = int(response)
+                    if content == response:
+                        results['good'].append(given.question.content)
+                    else:
+                        results['bad'].append(given.question.content)
+                else:
+                    matcher = SequenceMatcher(None,
+                                              given.content.lower(),
+                                              response.lower())
+                    if matcher.ratio() > 0.90:
+                        results['good'].append(given.question.content)
+                    else:
+                        results['bad'].append(given.question.content)
 
         # Count good/bad responses
         results['num_good'] = len(results['good'])
