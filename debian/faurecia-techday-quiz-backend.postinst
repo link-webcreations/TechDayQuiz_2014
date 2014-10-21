@@ -23,9 +23,17 @@ create_database() {
     ( \
         . ${INSTALL_DIR}/.virtualenvs/techday/bin/activate;
         cd ${INSTALL_DIR}/backend/techday;
-        ./manage.py syncdb --noinput;
+        ./manage.py syncdb --verbosity=0 --noinput;
     )
     chown techday:techday ${INSTALL_DIR}/backend/techday/db.sqlite3
+}
+
+collect_static() {
+    ( \
+        . ${INSTALL_DIR}/.virtualenvs/techday/bin/activate;
+        cd ${INSTALL_DIR}/backend/techday;
+        ./manage.py collectstatic --clear --verbosity=0 --noinput;
+    )
 }
 
 create_virtualenv() {
@@ -51,6 +59,7 @@ case "$1" in
         create_virtualenv
         install_apache_conf
         create_database
+        collect_static
     ;;
     abort-upgrade|abort-remove|abort-deconfigure)
     ;;
